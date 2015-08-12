@@ -38,7 +38,7 @@
 						<h:outputText/>
 						<h:outputLabel for="usuarioBeanExampleAseguradora" value="Aseguradora:"/>
 						<h:panelGroup>
-							<h:selectOneMenu converter="#{aseguradoraBean.converter}" id="usuarioBeanExampleAseguradora" value="#{usuarioBean.example.aseguradora.n}">
+							<h:selectOneMenu converter="#{aseguradoraBean.converter}" id="usuarioBeanExampleAseguradora" value="#{usuarioBean.example.aseguradora}">
 								<f:selectItem/>
 								<f:selectItems itemLabel="#{forgeview:display(_item.nombreLargo)}" itemValue="#{_item}" value="#{aseguradoraBean.all}" var="_item"/>
 							</h:selectOneMenu>
