@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{modeloBean.page}'/>
+		<f:event type="preRenderView" listener='#{modeloBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Modelo entities"/>
+
+	<ui:define name="header">
+		Modelo
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Modelo entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="modeloBeanExampleIdModelo" value="Id Modelo:"/>
+						<h:panelGroup>
+							<h:inputText id="modeloBeanExampleIdModelo" value="#{modeloBean.example.idModelo}"/>
+							<h:message for="modeloBeanExampleIdModelo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="modeloBeanExampleMarca" value="Marca:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{marcaBean.converter}" id="modeloBeanExampleMarca" value="#{modeloBean.example.marca}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{marcaBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="modeloBeanExampleMarca" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="modeloBeanExampleNombre" value="Nombre:"/>
+						<h:panelGroup>
+							<h:inputText id="modeloBeanExampleNombre" maxLength="50" value="#{modeloBean.example.nombre}"/>
+							<h:message for="modeloBeanExampleNombre" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="modeloBeanExampleFlagEstado" value="Flag Estado:"/>
+						<h:panelGroup>
+							<h:inputText id="modeloBeanExampleFlagEstado" maxLength="2" value="#{modeloBean.example.flagEstado}"/>
+							<h:message for="modeloBeanExampleFlagEstado" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="modeloBeanExampleUsuarioReg" value="Usuario Reg:"/>
+						<h:panelGroup>
+							<h:inputText id="modeloBeanExampleUsuarioReg" maxLength="30" value="#{modeloBean.example.usuarioReg}"/>
+							<h:message for="modeloBeanExampleUsuarioReg" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{modeloBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{modeloBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="modeloBeanPageItems" styleClass="data-table" value="#{modeloBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Modelo"/>
+					</f:facet>
+					<h:link outcome="/parametros/modelo/view">
+						<f:param name="id" value="#{_item.idModelo}"/>
+						<h:outputText id="itemIdModelo" value="#{_item.idModelo}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{modeloBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

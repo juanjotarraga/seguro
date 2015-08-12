@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{siniestroFotoBean.id}'/>
+		<f:event type="preRenderView" listener='#{siniestroFotoBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Siniestro Foto"/>
+
+	<ui:define name="header">
+		Siniestro Foto
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty siniestroFotoBean.id}'>
+				Edicion de Siniestro Foto
+			</c:when>
+			<c:otherwise>
+				Creacion de Siniestro Foto
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="siniestroFotoBeanSiniestroFotoIdSiniestroFoto" value="Id Siniestro Foto:"/>
+				<h:panelGroup>
+					<h:inputText id="siniestroFotoBeanSiniestroFotoIdSiniestroFoto" required="true" value="#{siniestroFotoBean.siniestroFoto.idSiniestroFoto}"/>
+					<h:message for="siniestroFotoBeanSiniestroFotoIdSiniestroFoto" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="siniestroFotoBeanSiniestroFotoSiniestro" value="Siniestro:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{siniestroBean.converter}" id="siniestroFotoBeanSiniestroFotoSiniestro" value="#{siniestroFotoBean.siniestroFoto.siniestro}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{siniestroBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="siniestroFotoBeanSiniestroFotoSiniestro" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="siniestroFotoBeanSiniestroFotoFotoFrontal" value="Foto Frontal:"/>
+				<h:panelGroup>
+					<h:inputText id="siniestroFotoBeanSiniestroFotoFotoFrontal" maxLength="200" value="#{siniestroFotoBean.siniestroFoto.fotoFrontal}"/>
+					<h:message for="siniestroFotoBeanSiniestroFotoFotoFrontal" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="siniestroFotoBeanSiniestroFotoFotoLateralDerecho" value="Foto Lateral Derecho:"/>
+				<h:panelGroup>
+					<h:inputText id="siniestroFotoBeanSiniestroFotoFotoLateralDerecho" maxLength="200" value="#{siniestroFotoBean.siniestroFoto.fotoLateralDerecho}"/>
+					<h:message for="siniestroFotoBeanSiniestroFotoFotoLateralDerecho" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="siniestroFotoBeanSiniestroFotoFotoLateralIzquierdo" value="Foto Lateral Izquierdo:"/>
+				<h:panelGroup>
+					<h:inputText id="siniestroFotoBeanSiniestroFotoFotoLateralIzquierdo" maxLength="200" value="#{siniestroFotoBean.siniestroFoto.fotoLateralIzquierdo}"/>
+					<h:message for="siniestroFotoBeanSiniestroFotoFotoLateralIzquierdo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="siniestroFotoBeanSiniestroFotoFotoTrasera" value="Foto Trasera:"/>
+				<h:panelGroup>
+					<h:inputText id="siniestroFotoBeanSiniestroFotoFotoTrasera" maxLength="200" value="#{siniestroFotoBean.siniestroFoto.fotoTrasera}"/>
+					<h:message for="siniestroFotoBeanSiniestroFotoFotoTrasera" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="siniestroFotoBeanSiniestroFotoFotoAccesorio" value="Foto Accesorio:"/>
+				<h:panelGroup>
+					<h:inputText id="siniestroFotoBeanSiniestroFotoFotoAccesorio" maxLength="200" value="#{siniestroFotoBean.siniestroFoto.fotoAccesorio}"/>
+					<h:message for="siniestroFotoBeanSiniestroFotoFotoAccesorio" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="siniestroFotoBeanSiniestroFotoFotoOtros" value="Foto Otros:"/>
+				<h:panelGroup>
+					<h:inputText id="siniestroFotoBeanSiniestroFotoFotoOtros" maxLength="200" value="#{siniestroFotoBean.siniestroFoto.fotoOtros}"/>
+					<h:message for="siniestroFotoBeanSiniestroFotoFotoOtros" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="siniestroFotoBeanSiniestroFotoFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="siniestroFotoBeanSiniestroFotoFechaReg" maxLength="29" value="#{siniestroFotoBean.siniestroFoto.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="siniestroFotoBeanSiniestroFotoFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="siniestroFotoBeanSiniestroFotoUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="siniestroFotoBeanSiniestroFotoUsuarioReg" maxLength="30" value="#{siniestroFotoBean.siniestroFoto.usuarioReg}"/>
+					<h:message for="siniestroFotoBeanSiniestroFotoUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="siniestroFotoBeanSiniestroFotoFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="siniestroFotoBeanSiniestroFotoFechaMod" maxLength="29" value="#{siniestroFotoBean.siniestroFoto.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="siniestroFotoBeanSiniestroFotoFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="siniestroFotoBeanSiniestroFotoUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="siniestroFotoBeanSiniestroFotoUsuarioMod" maxLength="30" value="#{siniestroFotoBean.siniestroFoto.usuarioMod}"/>
+					<h:message for="siniestroFotoBeanSiniestroFotoUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="siniestroFotoBeanSiniestroFotoFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="siniestroFotoBeanSiniestroFotoFechaBorrado" maxLength="29" value="#{siniestroFotoBean.siniestroFoto.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="siniestroFotoBeanSiniestroFotoFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="siniestroFotoBeanSiniestroFotoUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="siniestroFotoBeanSiniestroFotoUsuarioBorrado" maxLength="30" value="#{siniestroFotoBean.siniestroFoto.usuarioBorrado}"/>
+					<h:message for="siniestroFotoBeanSiniestroFotoUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Guardar" action='#{siniestroFotoBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty siniestroFotoBean.id}'>
+						<h:link value="Cancelar" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{siniestroFotoBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{siniestroFotoBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{servicioSaludBean.page}'/>
+		<f:event type="preRenderView" listener='#{servicioSaludBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Servicio Salud entities"/>
+
+	<ui:define name="header">
+		Servicio Salud
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Servicio Salud entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="servicioSaludBeanExampleIdServicioSalud" value="Id Servicio Salud:"/>
+						<h:panelGroup>
+							<h:inputText id="servicioSaludBeanExampleIdServicioSalud" value="#{servicioSaludBean.example.idServicioSalud}"/>
+							<h:message for="servicioSaludBeanExampleIdServicioSalud" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="servicioSaludBeanExampleNombre" value="Nombre:"/>
+						<h:panelGroup>
+							<h:inputText id="servicioSaludBeanExampleNombre" maxLength="200" value="#{servicioSaludBean.example.nombre}"/>
+							<h:message for="servicioSaludBeanExampleNombre" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="servicioSaludBeanExampleDescripcion" value="Descripcion:"/>
+						<h:panelGroup>
+							<h:inputText id="servicioSaludBeanExampleDescripcion" maxLength="500" value="#{servicioSaludBean.example.descripcion}"/>
+							<h:message for="servicioSaludBeanExampleDescripcion" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="servicioSaludBeanExampleFlagEstado" value="Flag Estado:"/>
+						<h:panelGroup>
+							<h:inputText id="servicioSaludBeanExampleFlagEstado" maxLength="2" value="#{servicioSaludBean.example.flagEstado}"/>
+							<h:message for="servicioSaludBeanExampleFlagEstado" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="servicioSaludBeanExampleUsuarioReg" value="Usuario Reg:"/>
+						<h:panelGroup>
+							<h:inputText id="servicioSaludBeanExampleUsuarioReg" maxLength="30" value="#{servicioSaludBean.example.usuarioReg}"/>
+							<h:message for="servicioSaludBeanExampleUsuarioReg" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{servicioSaludBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{servicioSaludBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="servicioSaludBeanPageItems" styleClass="data-table" value="#{servicioSaludBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Servicio Salud"/>
+					</f:facet>
+					<h:link outcome="/parametros/servicioSalud/view">
+						<f:param name="id" value="#{_item.idServicioSalud}"/>
+						<h:outputText id="itemIdServicioSalud" value="#{_item.idServicioSalud}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{servicioSaludBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

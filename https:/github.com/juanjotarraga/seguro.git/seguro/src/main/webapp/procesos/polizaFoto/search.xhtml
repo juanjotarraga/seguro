@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{polizaFotoBean.page}'/>
+		<f:event type="preRenderView" listener='#{polizaFotoBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Poliza Foto entities"/>
+
+	<ui:define name="header">
+		Poliza Foto
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Poliza Foto entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="polizaFotoBeanExampleIdPolizaFoto" value="Id Poliza Foto:"/>
+						<h:panelGroup>
+							<h:inputText id="polizaFotoBeanExampleIdPolizaFoto" value="#{polizaFotoBean.example.idPolizaFoto}"/>
+							<h:message for="polizaFotoBeanExampleIdPolizaFoto" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="polizaFotoBeanExamplePoliza" value="Poliza:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{polizaBean.converter}" id="polizaFotoBeanExamplePoliza" value="#{polizaFotoBean.example.poliza}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{polizaBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="polizaFotoBeanExamplePoliza" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="polizaFotoBeanExampleFotoFrontal" value="Foto Frontal:"/>
+						<h:panelGroup>
+							<h:inputText id="polizaFotoBeanExampleFotoFrontal" maxLength="200" value="#{polizaFotoBean.example.fotoFrontal}"/>
+							<h:message for="polizaFotoBeanExampleFotoFrontal" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="polizaFotoBeanExampleFotoLateralDerecho" value="Foto Lateral Derecho:"/>
+						<h:panelGroup>
+							<h:inputText id="polizaFotoBeanExampleFotoLateralDerecho" maxLength="200" value="#{polizaFotoBean.example.fotoLateralDerecho}"/>
+							<h:message for="polizaFotoBeanExampleFotoLateralDerecho" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="polizaFotoBeanExampleFotoLateralIzquierdo" value="Foto Lateral Izquierdo:"/>
+						<h:panelGroup>
+							<h:inputText id="polizaFotoBeanExampleFotoLateralIzquierdo" maxLength="200" value="#{polizaFotoBean.example.fotoLateralIzquierdo}"/>
+							<h:message for="polizaFotoBeanExampleFotoLateralIzquierdo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{polizaFotoBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{polizaFotoBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="polizaFotoBeanPageItems" styleClass="data-table" value="#{polizaFotoBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Poliza Foto"/>
+					</f:facet>
+					<h:link outcome="/polizaFoto/view">
+						<f:param name="id" value="#{_item.idPolizaFoto}"/>
+						<h:outputText id="itemIdPolizaFoto" value="#{_item.idPolizaFoto}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{polizaFotoBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

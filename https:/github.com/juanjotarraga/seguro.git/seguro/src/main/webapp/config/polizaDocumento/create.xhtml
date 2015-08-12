@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{polizaDocumentoBean.id}'/>
+		<f:event type="preRenderView" listener='#{polizaDocumentoBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Poliza Documento"/>
+
+	<ui:define name="header">
+		Poliza Documento
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty polizaDocumentoBean.id}'>
+				Edicion de Poliza Documento
+			</c:when>
+			<c:otherwise>
+				Creacion de Poliza Documento
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoIdPolizaDocumento" value="Id Poliza Documento:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaDocumentoBeanPolizaDocumentoIdPolizaDocumento" required="true" value="#{polizaDocumentoBean.polizaDocumento.idPolizaDocumento}"/>
+					<h:message for="polizaDocumentoBeanPolizaDocumentoIdPolizaDocumento" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoPoliza" value="Poliza:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{polizaBean.converter}" id="polizaDocumentoBeanPolizaDocumentoPoliza" value="#{polizaDocumentoBean.polizaDocumento.poliza}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{polizaBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="polizaDocumentoBeanPolizaDocumentoPoliza" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoCarnet" value="Carnet:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaDocumentoBeanPolizaDocumentoCarnet" maxLength="200" value="#{polizaDocumentoBean.polizaDocumento.carnet}"/>
+					<h:message for="polizaDocumentoBeanPolizaDocumentoCarnet" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoRua" value="Rua:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaDocumentoBeanPolizaDocumentoRua" maxLength="200" value="#{polizaDocumentoBean.polizaDocumento.rua}"/>
+					<h:message for="polizaDocumentoBeanPolizaDocumentoRua" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoOtros" value="Otros:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaDocumentoBeanPolizaDocumentoOtros" maxLength="200" value="#{polizaDocumentoBean.polizaDocumento.otros}"/>
+					<h:message for="polizaDocumentoBeanPolizaDocumentoOtros" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaDocumentoBeanPolizaDocumentoFechaReg" maxLength="29" value="#{polizaDocumentoBean.polizaDocumento.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="polizaDocumentoBeanPolizaDocumentoFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaDocumentoBeanPolizaDocumentoUsuarioReg" maxLength="30" value="#{polizaDocumentoBean.polizaDocumento.usuarioReg}"/>
+					<h:message for="polizaDocumentoBeanPolizaDocumentoUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaDocumentoBeanPolizaDocumentoFechaMod" maxLength="29" value="#{polizaDocumentoBean.polizaDocumento.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="polizaDocumentoBeanPolizaDocumentoFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaDocumentoBeanPolizaDocumentoUsuarioMod" maxLength="30" value="#{polizaDocumentoBean.polizaDocumento.usuarioMod}"/>
+					<h:message for="polizaDocumentoBeanPolizaDocumentoUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaDocumentoBeanPolizaDocumentoFechaBorrado" maxLength="29" value="#{polizaDocumentoBean.polizaDocumento.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="polizaDocumentoBeanPolizaDocumentoFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaDocumentoBeanPolizaDocumentoUsuarioBorrado" maxLength="30" value="#{polizaDocumentoBean.polizaDocumento.usuarioBorrado}"/>
+					<h:message for="polizaDocumentoBeanPolizaDocumentoUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Guardar" action='#{polizaDocumentoBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty polizaDocumentoBean.id}'>
+						<h:link value="Cancelar" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{polizaDocumentoBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{polizaDocumentoBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

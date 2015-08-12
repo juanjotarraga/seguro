@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{coberturaSiniestroBean.id}'/>
+		<f:event type="preRenderView" listener='#{coberturaSiniestroBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Cobertura Siniestro"/>
+
+	<ui:define name="header">
+		Cobertura Siniestro
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty coberturaSiniestroBean.id}'>
+				Edicion de Cobertura Siniestro
+			</c:when>
+			<c:otherwise>
+				Creacion de Cobertura Siniestro
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="coberturaSiniestroBeanCoberturaSiniestroIdCoberturaSiniestro" value="Id Cobertura Siniestro:"/>
+				<h:panelGroup>
+					<h:inputText id="coberturaSiniestroBeanCoberturaSiniestroIdCoberturaSiniestro" required="true" value="#{coberturaSiniestroBean.coberturaSiniestro.idCoberturaSiniestro}"/>
+					<h:message for="coberturaSiniestroBeanCoberturaSiniestroIdCoberturaSiniestro" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="coberturaSiniestroBeanCoberturaSiniestroCondicion" value="Condicion:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{condicionBean.converter}" id="coberturaSiniestroBeanCoberturaSiniestroCondicion" value="#{coberturaSiniestroBean.coberturaSiniestro.condicion}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{condicionBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="coberturaSiniestroBeanCoberturaSiniestroCondicion" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="coberturaSiniestroBeanCoberturaSiniestroSiniestro" value="Siniestro:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{siniestroBean.converter}" id="coberturaSiniestroBeanCoberturaSiniestroSiniestro" value="#{coberturaSiniestroBean.coberturaSiniestro.siniestro}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{siniestroBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="coberturaSiniestroBeanCoberturaSiniestroSiniestro" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="coberturaSiniestroBeanCoberturaSiniestroValorAsegurado" value="Valor Asegurado:"/>
+				<h:panelGroup>
+					<h:inputText id="coberturaSiniestroBeanCoberturaSiniestroValorAsegurado" value="#{coberturaSiniestroBean.coberturaSiniestro.valorAsegurado}"/>
+					<h:message for="coberturaSiniestroBeanCoberturaSiniestroValorAsegurado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="coberturaSiniestroBeanCoberturaSiniestroValorIndemnizado" value="Valor Indemnizado:"/>
+				<h:panelGroup>
+					<h:inputText id="coberturaSiniestroBeanCoberturaSiniestroValorIndemnizado" value="#{coberturaSiniestroBean.coberturaSiniestro.valorIndemnizado}"/>
+					<h:message for="coberturaSiniestroBeanCoberturaSiniestroValorIndemnizado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="coberturaSiniestroBeanCoberturaSiniestroDocumentos" value="Documentos:"/>
+				<h:panelGroup>
+					<h:inputText id="coberturaSiniestroBeanCoberturaSiniestroDocumentos" maxLength="30" value="#{coberturaSiniestroBean.coberturaSiniestro.documentos}"/>
+					<h:message for="coberturaSiniestroBeanCoberturaSiniestroDocumentos" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="coberturaSiniestroBeanCoberturaSiniestroFechaSolicitud" value="Fecha Solicitud:"/>
+				<h:panelGroup>
+					<h:inputText id="coberturaSiniestroBeanCoberturaSiniestroFechaSolicitud" maxLength="29" value="#{coberturaSiniestroBean.coberturaSiniestro.fechaSolicitud}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="coberturaSiniestroBeanCoberturaSiniestroFechaSolicitud" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="coberturaSiniestroBeanCoberturaSiniestroFechaEntrega" value="Fecha Entrega:"/>
+				<h:panelGroup>
+					<h:inputText id="coberturaSiniestroBeanCoberturaSiniestroFechaEntrega" maxLength="29" value="#{coberturaSiniestroBean.coberturaSiniestro.fechaEntrega}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="coberturaSiniestroBeanCoberturaSiniestroFechaEntrega" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="coberturaSiniestroBeanCoberturaSiniestroFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="coberturaSiniestroBeanCoberturaSiniestroFechaReg" maxLength="29" value="#{coberturaSiniestroBean.coberturaSiniestro.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="coberturaSiniestroBeanCoberturaSiniestroFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="coberturaSiniestroBeanCoberturaSiniestroUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="coberturaSiniestroBeanCoberturaSiniestroUsuarioReg" maxLength="30" value="#{coberturaSiniestroBean.coberturaSiniestro.usuarioReg}"/>
+					<h:message for="coberturaSiniestroBeanCoberturaSiniestroUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="coberturaSiniestroBeanCoberturaSiniestroFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="coberturaSiniestroBeanCoberturaSiniestroFechaMod" maxLength="29" value="#{coberturaSiniestroBean.coberturaSiniestro.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="coberturaSiniestroBeanCoberturaSiniestroFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="coberturaSiniestroBeanCoberturaSiniestroUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="coberturaSiniestroBeanCoberturaSiniestroUsuarioMod" maxLength="30" value="#{coberturaSiniestroBean.coberturaSiniestro.usuarioMod}"/>
+					<h:message for="coberturaSiniestroBeanCoberturaSiniestroUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="coberturaSiniestroBeanCoberturaSiniestroFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="coberturaSiniestroBeanCoberturaSiniestroFechaBorrado" maxLength="29" value="#{coberturaSiniestroBean.coberturaSiniestro.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="coberturaSiniestroBeanCoberturaSiniestroFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="coberturaSiniestroBeanCoberturaSiniestroUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="coberturaSiniestroBeanCoberturaSiniestroUsuarioBorrado" maxLength="30" value="#{coberturaSiniestroBean.coberturaSiniestro.usuarioBorrado}"/>
+					<h:message for="coberturaSiniestroBeanCoberturaSiniestroUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Guardar" action='#{coberturaSiniestroBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty coberturaSiniestroBean.id}'>
+						<h:link value="Cancelar" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{coberturaSiniestroBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{coberturaSiniestroBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

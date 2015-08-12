@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{marcaBean.page}'/>
+		<f:event type="preRenderView" listener='#{marcaBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Marca entities"/>
+
+	<ui:define name="header">
+		Marca
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Marca entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="marcaBeanExampleIdMarca" value="Id Marca:"/>
+						<h:panelGroup>
+							<h:inputText id="marcaBeanExampleIdMarca" value="#{marcaBean.example.idMarca}"/>
+							<h:message for="marcaBeanExampleIdMarca" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="marcaBeanExampleNombre" value="Nombre:"/>
+						<h:panelGroup>
+							<h:inputText id="marcaBeanExampleNombre" maxLength="50" value="#{marcaBean.example.nombre}"/>
+							<h:message for="marcaBeanExampleNombre" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="marcaBeanExampleFlagEstado" value="Flag Estado:"/>
+						<h:panelGroup>
+							<h:inputText id="marcaBeanExampleFlagEstado" maxLength="2" value="#{marcaBean.example.flagEstado}"/>
+							<h:message for="marcaBeanExampleFlagEstado" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="marcaBeanExampleUsuarioReg" value="Usuario Reg:"/>
+						<h:panelGroup>
+							<h:inputText id="marcaBeanExampleUsuarioReg" maxLength="30" value="#{marcaBean.example.usuarioReg}"/>
+							<h:message for="marcaBeanExampleUsuarioReg" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="marcaBeanExampleUsuarioMod" value="Usuario Mod:"/>
+						<h:panelGroup>
+							<h:inputText id="marcaBeanExampleUsuarioMod" maxLength="30" value="#{marcaBean.example.usuarioMod}"/>
+							<h:message for="marcaBeanExampleUsuarioMod" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{marcaBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{marcaBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="marcaBeanPageItems" styleClass="data-table" value="#{marcaBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Marca"/>
+					</f:facet>
+					<h:link outcome="/parametros/marca/view">
+						<f:param name="id" value="#{_item.idMarca}"/>
+						<h:outputText id="itemIdMarca" value="#{_item.idMarca}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{marcaBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

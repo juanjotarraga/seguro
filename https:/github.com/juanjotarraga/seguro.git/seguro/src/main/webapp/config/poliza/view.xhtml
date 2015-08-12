@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{polizaBean.id}'/>
+		<f:event type="preRenderView" listener='#{polizaBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Poliza"/>
+
+	<ui:define name="header">
+		Poliza
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Poliza
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="polizaBeanPolizaIdPoliza" value="Id Poliza:"/>
+			<h:outputText id="polizaBeanPolizaIdPoliza" value="#{polizaBean.poliza.idPoliza}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaAutomotor" value="Automotor:"/>
+			<h:link id="polizaBeanPolizaAutomotor" outcome="/automotor/view" rendered="#{!empty polizaBean.poliza.automotor}" value="#{polizaBean.poliza.automotor}">
+				<f:param name="id" value="#{polizaBean.poliza.automotor.idAutomotor}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaCliente" value="Cliente:"/>
+			<h:link id="polizaBeanPolizaCliente" outcome="/cliente/view" rendered="#{!empty polizaBean.poliza.cliente}" value="#{polizaBean.poliza.cliente}">
+				<f:param name="id" value="#{polizaBean.poliza.cliente.idCliente}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaTasa" value="Tasa:"/>
+			<h:link id="polizaBeanPolizaTasa" outcome="/tasa/view" rendered="#{!empty polizaBean.poliza.tasa}" value="#{polizaBean.poliza.tasa}">
+				<f:param name="id" value="#{polizaBean.poliza.tasa.idTasa}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaNroCotizacion" value="Nro Cotizacion:"/>
+			<h:outputText id="polizaBeanPolizaNroCotizacion" value="#{polizaBean.poliza.nroCotizacion}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaCodigoBarra" value="Codigo Barra:"/>
+			<h:outputText id="polizaBeanPolizaCodigoBarra" value="#{polizaBean.poliza.codigoBarra}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaInicioVigencia" value="Inicio Vigencia:"/>
+			<h:outputText id="polizaBeanPolizaInicioVigencia" value="#{polizaBean.poliza.inicioVigencia}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaFinVigencia" value="Fin Vigencia:"/>
+			<h:outputText id="polizaBeanPolizaFinVigencia" value="#{polizaBean.poliza.finVigencia}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaFechaContrato" value="Fecha Contrato:"/>
+			<h:outputText id="polizaBeanPolizaFechaContrato" value="#{polizaBean.poliza.fechaContrato}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaContratado" value="Contratado:"/>
+			<h:outputText id="polizaBeanPolizaContratado" value="#{polizaBean.poliza.contratado}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaValorAsegurado" value="Valor Asegurado:"/>
+			<h:outputText id="polizaBeanPolizaValorAsegurado" value="#{polizaBean.poliza.valorAsegurado}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaEstadoCotizacion" value="Estado Cotizacion:"/>
+			<h:outputText id="polizaBeanPolizaEstadoCotizacion" value="#{polizaBean.poliza.estadoCotizacion}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaPrimaContratada" value="Prima Contratada:"/>
+			<h:outputText id="polizaBeanPolizaPrimaContratada" value="#{polizaBean.poliza.primaContratada}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaNroPoliza" value="Nro Poliza:"/>
+			<h:outputText id="polizaBeanPolizaNroPoliza" value="#{polizaBean.poliza.nroPoliza}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaNroContrato" value="Nro Contrato:"/>
+			<h:outputText id="polizaBeanPolizaNroContrato" value="#{polizaBean.poliza.nroContrato}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaOrigen" value="Origen:"/>
+			<h:outputText id="polizaBeanPolizaOrigen" value="#{polizaBean.poliza.origen}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaEstadoNuevo" value="Estado Nuevo:"/>
+			<h:outputText id="polizaBeanPolizaEstadoNuevo" value="#{polizaBean.poliza.estadoNuevo}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaEstadoRenovacion" value="Estado Renovacion:"/>
+			<h:outputText id="polizaBeanPolizaEstadoRenovacion" value="#{polizaBean.poliza.estadoRenovacion}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaCredito" value="Credito:"/>
+			<h:outputText id="polizaBeanPolizaCredito" value="#{polizaBean.poliza.credito}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaSubrogado" value="Subrogado:"/>
+			<h:outputText id="polizaBeanPolizaSubrogado" value="#{polizaBean.poliza.subrogado}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaRegistrado" value="Registrado:"/>
+			<h:outputText id="polizaBeanPolizaRegistrado" value="#{polizaBean.poliza.registrado}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaValorSubrogacion" value="Valor Subrogacion:"/>
+			<h:outputText id="polizaBeanPolizaValorSubrogacion" value="#{polizaBean.poliza.valorSubrogacion}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaMes" value="Mes:"/>
+			<h:outputText id="polizaBeanPolizaMes" value="#{polizaBean.poliza.mes}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaDia" value="Dia:"/>
+			<h:outputText id="polizaBeanPolizaDia" value="#{polizaBean.poliza.dia}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaAno" value="Ano:"/>
+			<h:outputText id="polizaBeanPolizaAno" value="#{polizaBean.poliza.ano}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaGeneral" value="General:"/>
+			<h:outputText id="polizaBeanPolizaGeneral" value="#{polizaBean.poliza.general}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaObservaciones" value="Observaciones:"/>
+			<h:outputText id="polizaBeanPolizaObservaciones" value="#{polizaBean.poliza.observaciones}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaNotas" value="Notas:"/>
+			<h:outputText id="polizaBeanPolizaNotas" value="#{polizaBean.poliza.notas}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaPublico" value="Publico:"/>
+			<h:outputText id="polizaBeanPolizaPublico" value="#{polizaBean.poliza.publico}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaCodigoVehiculo" value="Codigo Vehiculo:"/>
+			<h:outputText id="polizaBeanPolizaCodigoVehiculo" value="#{polizaBean.poliza.codigoVehiculo}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaTipoPago" value="Tipo Pago:"/>
+			<h:outputText id="polizaBeanPolizaTipoPago" value="#{polizaBean.poliza.tipoPago}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaFlagEstado" value="Flag Estado:"/>
+			<h:outputText id="polizaBeanPolizaFlagEstado" value="#{polizaBean.poliza.flagEstado}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaFechaReg" value="Fecha Reg:"/>
+			<h:outputText id="polizaBeanPolizaFechaReg" value="#{polizaBean.poliza.fechaReg}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaUsuarioReg" value="Usuario Reg:"/>
+			<h:outputText id="polizaBeanPolizaUsuarioReg" value="#{polizaBean.poliza.usuarioReg}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaFechaMod" value="Fecha Mod:"/>
+			<h:outputText id="polizaBeanPolizaFechaMod" value="#{polizaBean.poliza.fechaMod}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaUsuarioMod" value="Usuario Mod:"/>
+			<h:outputText id="polizaBeanPolizaUsuarioMod" value="#{polizaBean.poliza.usuarioMod}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaFechaBorrado" value="Fecha Borrado:"/>
+			<h:outputText id="polizaBeanPolizaFechaBorrado" value="#{polizaBean.poliza.fechaBorrado}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaUsuarioBorrado" value="Usuario Borrado:"/>
+			<h:outputText id="polizaBeanPolizaUsuarioBorrado" value="#{polizaBean.poliza.usuarioBorrado}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaPlanPagos" value="Plan Pagos:"/>
+			<h:dataTable id="polizaBeanPolizaPlanPagos" styleClass="data-table" value="#{forgeview:asList(polizaBean.poliza.planPagos)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Plan Pago"/>
+					</f:facet>
+					<h:link outcome="/planPago/view">
+						<f:param name="id" value="#{_item.idPlanPago}"/>
+						<h:outputText id="itemIdPlanPago" value="#{_item.idPlanPago}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaPolizaCoberturas" value="Poliza Coberturas:"/>
+			<h:dataTable id="polizaBeanPolizaPolizaCoberturas" styleClass="data-table" value="#{forgeview:asList(polizaBean.poliza.polizaCoberturas)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Cobertura"/>
+					</f:facet>
+					<h:link outcome="/polizaCobertura/view">
+						<f:param name="id" value="#{_item.idCobertura}"/>
+						<h:outputText id="itemIdCobertura" value="#{_item.idCobertura}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaPrimas" value="Primas:"/>
+			<h:dataTable id="polizaBeanPolizaPrimas" styleClass="data-table" value="#{forgeview:asList(polizaBean.poliza.primas)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Prima"/>
+					</f:facet>
+					<h:link outcome="/procesos/prima/view">
+						<f:param name="id" value="#{_item.idPrima}"/>
+						<h:outputText id="itemIdPrima" value="#{_item.idPrima}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaPolizaDocumentos" value="Poliza Documentos:"/>
+			<h:dataTable id="polizaBeanPolizaPolizaDocumentos" styleClass="data-table" value="#{forgeview:asList(polizaBean.poliza.polizaDocumentos)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Poliza Documento"/>
+					</f:facet>
+					<h:link outcome="/polizaDocumento/view">
+						<f:param name="id" value="#{_item.idPolizaDocumento}"/>
+						<h:outputText id="itemIdPolizaDocumento" value="#{_item.idPolizaDocumento}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaSiniestros" value="Siniestros:"/>
+			<h:dataTable id="polizaBeanPolizaSiniestros" styleClass="data-table" value="#{forgeview:asList(polizaBean.poliza.siniestros)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Siniestro"/>
+					</f:facet>
+					<h:link outcome="/siniestro/view">
+						<f:param name="id" value="#{_item.idSiniestro}"/>
+						<h:outputText id="itemIdSiniestro" value="#{_item.idSiniestro}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="polizaBeanPolizaPolizaFotos" value="Poliza Fotos:"/>
+			<h:dataTable id="polizaBeanPolizaPolizaFotos" styleClass="data-table" value="#{forgeview:asList(polizaBean.poliza.polizaFotos)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Poliza Foto"/>
+					</f:facet>
+					<h:link outcome="/polizaFoto/view">
+						<f:param name="id" value="#{_item.idPolizaFoto}"/>
+						<h:outputText id="itemIdPolizaFoto" value="#{_item.idPolizaFoto}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="Ver Todos" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Agregar" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

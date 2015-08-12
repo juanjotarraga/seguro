@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{siniestroDocumentoBean.page}'/>
+		<f:event type="preRenderView" listener='#{siniestroDocumentoBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Siniestro Documento entities"/>
+
+	<ui:define name="header">
+		Siniestro Documento
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Siniestro Documento entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="siniestroDocumentoBeanExampleIdPsiniestroDocumento" value="Id Psiniestro Documento:"/>
+						<h:panelGroup>
+							<h:inputText id="siniestroDocumentoBeanExampleIdPsiniestroDocumento" value="#{siniestroDocumentoBean.example.idPsiniestroDocumento}"/>
+							<h:message for="siniestroDocumentoBeanExampleIdPsiniestroDocumento" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="siniestroDocumentoBeanExampleSiniestro" value="Siniestro:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{siniestroBean.converter}" id="siniestroDocumentoBeanExampleSiniestro" value="#{siniestroDocumentoBean.example.siniestro}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{siniestroBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="siniestroDocumentoBeanExampleSiniestro" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="siniestroDocumentoBeanExampleCarnet" value="Carnet:"/>
+						<h:panelGroup>
+							<h:inputText id="siniestroDocumentoBeanExampleCarnet" maxLength="200" value="#{siniestroDocumentoBean.example.carnet}"/>
+							<h:message for="siniestroDocumentoBeanExampleCarnet" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="siniestroDocumentoBeanExampleRua" value="Rua:"/>
+						<h:panelGroup>
+							<h:inputText id="siniestroDocumentoBeanExampleRua" maxLength="200" value="#{siniestroDocumentoBean.example.rua}"/>
+							<h:message for="siniestroDocumentoBeanExampleRua" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="siniestroDocumentoBeanExampleOtros" value="Otros:"/>
+						<h:panelGroup>
+							<h:inputText id="siniestroDocumentoBeanExampleOtros" maxLength="200" value="#{siniestroDocumentoBean.example.otros}"/>
+							<h:message for="siniestroDocumentoBeanExampleOtros" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{siniestroDocumentoBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{siniestroDocumentoBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="siniestroDocumentoBeanPageItems" styleClass="data-table" value="#{siniestroDocumentoBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Psiniestro Documento"/>
+					</f:facet>
+					<h:link outcome="/siniestroDocumento/view">
+						<f:param name="id" value="#{_item.idPsiniestroDocumento}"/>
+						<h:outputText id="itemIdPsiniestroDocumento" value="#{_item.idPsiniestroDocumento}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{siniestroDocumentoBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{polizaCoberturaBean.page}'/>
+		<f:event type="preRenderView" listener='#{polizaCoberturaBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Poliza Cobertura entities"/>
+
+	<ui:define name="header">
+		Poliza Cobertura
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Poliza Cobertura entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="polizaCoberturaBeanExampleIdCobertura" value="Id Cobertura:"/>
+						<h:panelGroup>
+							<h:inputText id="polizaCoberturaBeanExampleIdCobertura" value="#{polizaCoberturaBean.example.idCobertura}"/>
+							<h:message for="polizaCoberturaBeanExampleIdCobertura" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="polizaCoberturaBeanExamplePoliza" value="Poliza:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{polizaBean.converter}" id="polizaCoberturaBeanExamplePoliza" value="#{polizaCoberturaBean.example.poliza}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{polizaBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="polizaCoberturaBeanExamplePoliza" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="polizaCoberturaBeanExampleNombre" value="Nombre:"/>
+						<h:panelGroup>
+							<h:inputText id="polizaCoberturaBeanExampleNombre" maxLength="90" value="#{polizaCoberturaBean.example.nombre}"/>
+							<h:message for="polizaCoberturaBeanExampleNombre" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="polizaCoberturaBeanExampleAcronimo" value="Acronimo:"/>
+						<h:panelGroup>
+							<h:inputText id="polizaCoberturaBeanExampleAcronimo" maxLength="30" value="#{polizaCoberturaBean.example.acronimo}"/>
+							<h:message for="polizaCoberturaBeanExampleAcronimo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="polizaCoberturaBeanExampleFlagEstado" value="Flag Estado:"/>
+						<h:panelGroup>
+							<h:inputText id="polizaCoberturaBeanExampleFlagEstado" maxLength="2" value="#{polizaCoberturaBean.example.flagEstado}"/>
+							<h:message for="polizaCoberturaBeanExampleFlagEstado" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{polizaCoberturaBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{polizaCoberturaBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="polizaCoberturaBeanPageItems" styleClass="data-table" value="#{polizaCoberturaBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Cobertura"/>
+					</f:facet>
+					<h:link outcome="/polizaCobertura/view">
+						<f:param name="id" value="#{_item.idCobertura}"/>
+						<h:outputText id="itemIdCobertura" value="#{_item.idCobertura}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{polizaCoberturaBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

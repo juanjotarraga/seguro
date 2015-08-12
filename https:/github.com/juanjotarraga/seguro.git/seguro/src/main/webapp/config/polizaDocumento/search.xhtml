@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{polizaDocumentoBean.page}'/>
+		<f:event type="preRenderView" listener='#{polizaDocumentoBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Poliza Documento entities"/>
+
+	<ui:define name="header">
+		Poliza Documento
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Poliza Documento entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="polizaDocumentoBeanExampleIdPolizaDocumento" value="Id Poliza Documento:"/>
+						<h:panelGroup>
+							<h:inputText id="polizaDocumentoBeanExampleIdPolizaDocumento" value="#{polizaDocumentoBean.example.idPolizaDocumento}"/>
+							<h:message for="polizaDocumentoBeanExampleIdPolizaDocumento" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="polizaDocumentoBeanExamplePoliza" value="Poliza:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{polizaBean.converter}" id="polizaDocumentoBeanExamplePoliza" value="#{polizaDocumentoBean.example.poliza}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{polizaBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="polizaDocumentoBeanExamplePoliza" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="polizaDocumentoBeanExampleCarnet" value="Carnet:"/>
+						<h:panelGroup>
+							<h:inputText id="polizaDocumentoBeanExampleCarnet" maxLength="200" value="#{polizaDocumentoBean.example.carnet}"/>
+							<h:message for="polizaDocumentoBeanExampleCarnet" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="polizaDocumentoBeanExampleRua" value="Rua:"/>
+						<h:panelGroup>
+							<h:inputText id="polizaDocumentoBeanExampleRua" maxLength="200" value="#{polizaDocumentoBean.example.rua}"/>
+							<h:message for="polizaDocumentoBeanExampleRua" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="polizaDocumentoBeanExampleOtros" value="Otros:"/>
+						<h:panelGroup>
+							<h:inputText id="polizaDocumentoBeanExampleOtros" maxLength="200" value="#{polizaDocumentoBean.example.otros}"/>
+							<h:message for="polizaDocumentoBeanExampleOtros" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{polizaDocumentoBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{polizaDocumentoBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="polizaDocumentoBeanPageItems" styleClass="data-table" value="#{polizaDocumentoBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Poliza Documento"/>
+					</f:facet>
+					<h:link outcome="/polizaDocumento/view">
+						<f:param name="id" value="#{_item.idPolizaDocumento}"/>
+						<h:outputText id="itemIdPolizaDocumento" value="#{_item.idPolizaDocumento}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{polizaDocumentoBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{tallerMecanicoBean.page}'/>
+		<f:event type="preRenderView" listener='#{tallerMecanicoBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Taller Mecanico entities"/>
+
+	<ui:define name="header">
+		Taller Mecanico
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Taller Mecanico entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="tallerMecanicoBeanExampleIdTallerMecanico" value="Id Taller Mecanico:"/>
+						<h:panelGroup>
+							<h:inputText id="tallerMecanicoBeanExampleIdTallerMecanico" value="#{tallerMecanicoBean.example.idTallerMecanico}"/>
+							<h:message for="tallerMecanicoBeanExampleIdTallerMecanico" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="tallerMecanicoBeanExampleNombre" value="Nombre:"/>
+						<h:panelGroup>
+							<h:inputText id="tallerMecanicoBeanExampleNombre" maxLength="100" value="#{tallerMecanicoBean.example.nombre}"/>
+							<h:message for="tallerMecanicoBeanExampleNombre" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="tallerMecanicoBeanExampleFlagEstado" value="Flag Estado:"/>
+						<h:panelGroup>
+							<h:inputText id="tallerMecanicoBeanExampleFlagEstado" maxLength="2" value="#{tallerMecanicoBean.example.flagEstado}"/>
+							<h:message for="tallerMecanicoBeanExampleFlagEstado" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="tallerMecanicoBeanExampleUsuarioReg" value="Usuario Reg:"/>
+						<h:panelGroup>
+							<h:inputText id="tallerMecanicoBeanExampleUsuarioReg" maxLength="30" value="#{tallerMecanicoBean.example.usuarioReg}"/>
+							<h:message for="tallerMecanicoBeanExampleUsuarioReg" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="tallerMecanicoBeanExampleUsuarioMod" value="Usuario Mod:"/>
+						<h:panelGroup>
+							<h:inputText id="tallerMecanicoBeanExampleUsuarioMod" maxLength="30" value="#{tallerMecanicoBean.example.usuarioMod}"/>
+							<h:message for="tallerMecanicoBeanExampleUsuarioMod" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{tallerMecanicoBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{tallerMecanicoBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="tallerMecanicoBeanPageItems" styleClass="data-table" value="#{tallerMecanicoBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Taller Mecanico"/>
+					</f:facet>
+					<h:link outcome="/parametros/tallerMecanico/view">
+						<f:param name="id" value="#{_item.idTallerMecanico}"/>
+						<h:outputText id="itemIdTallerMecanico" value="#{_item.idTallerMecanico}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{tallerMecanicoBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

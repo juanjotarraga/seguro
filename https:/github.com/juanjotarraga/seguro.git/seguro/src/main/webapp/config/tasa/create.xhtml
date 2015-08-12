@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{tasaBean.id}'/>
+		<f:event type="preRenderView" listener='#{tasaBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Tasa"/>
+
+	<ui:define name="header">
+		Tasa
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty tasaBean.id}'>
+				Edicion de Tasa
+			</c:when>
+			<c:otherwise>
+				Creacion de Tasa
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="tasaBeanTasaIdTasa" value="Id Tasa:"/>
+				<h:panelGroup>
+					<h:inputText id="tasaBeanTasaIdTasa" required="true" value="#{tasaBean.tasa.idTasa}"/>
+					<h:message for="tasaBeanTasaIdTasa" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="tasaBeanTasaCompania" value="Compania:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{companiaBean.converter}" id="tasaBeanTasaCompania" value="#{tasaBean.tasa.compania}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{companiaBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="tasaBeanTasaCompania" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="tasaBeanTasaTipo" value="Tipo:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{tipoBean.converter}" id="tasaBeanTasaTipo" value="#{tasaBean.tasa.tipo}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{tipoBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="tasaBeanTasaTipo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="tasaBeanTasaMayorQue" value="Mayor Que:"/>
+				<h:panelGroup>
+					<h:inputText id="tasaBeanTasaMayorQue" value="#{tasaBean.tasa.mayorQue}"/>
+					<h:message for="tasaBeanTasaMayorQue" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="tasaBeanTasaMenorQue" value="Menor Que:"/>
+				<h:panelGroup>
+					<h:inputText id="tasaBeanTasaMenorQue" value="#{tasaBean.tasa.menorQue}"/>
+					<h:message for="tasaBeanTasaMenorQue" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="tasaBeanTasaPrimaContado" value="Prima Contado:"/>
+				<h:panelGroup>
+					<h:inputText id="tasaBeanTasaPrimaContado" value="#{tasaBean.tasa.primaContado}"/>
+					<h:message for="tasaBeanTasaPrimaContado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="tasaBeanTasaPrimaCredito" value="Prima Credito:"/>
+				<h:panelGroup>
+					<h:inputText id="tasaBeanTasaPrimaCredito" value="#{tasaBean.tasa.primaCredito}"/>
+					<h:message for="tasaBeanTasaPrimaCredito" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="tasaBeanTasaValorExtra" value="Valor Extra:"/>
+				<h:panelGroup>
+					<h:inputText id="tasaBeanTasaValorExtra" value="#{tasaBean.tasa.valorExtra}"/>
+					<h:message for="tasaBeanTasaValorExtra" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="tasaBeanTasaFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="tasaBeanTasaFechaReg" maxLength="29" value="#{tasaBean.tasa.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="tasaBeanTasaFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="tasaBeanTasaUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="tasaBeanTasaUsuarioReg" maxLength="30" value="#{tasaBean.tasa.usuarioReg}"/>
+					<h:message for="tasaBeanTasaUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="tasaBeanTasaFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="tasaBeanTasaFechaMod" maxLength="29" value="#{tasaBean.tasa.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="tasaBeanTasaFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="tasaBeanTasaUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="tasaBeanTasaUsuarioMod" maxLength="30" value="#{tasaBean.tasa.usuarioMod}"/>
+					<h:message for="tasaBeanTasaUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="tasaBeanTasaFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="tasaBeanTasaFechaBorrado" maxLength="29" value="#{tasaBean.tasa.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="tasaBeanTasaFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="tasaBeanTasaUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="tasaBeanTasaUsuarioBorrado" maxLength="30" value="#{tasaBean.tasa.usuarioBorrado}"/>
+					<h:message for="tasaBeanTasaUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="tasaBeanTasaPolizas" value="Polizas:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{tasaBean.tasa.polizas}"/>
+					<h:dataTable id="tasaBeanTasaPolizas" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Poliza"/>
+							</f:facet>
+							<h:link outcome="/procesos/poliza/view">
+								<f:param name="id" value="#{_item.idPoliza}"/>
+								<h:outputText id="itemIdPoliza" value="#{_item.idPoliza}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="polizaBeanAddIdPoliza" value="#{polizaBean.add.idPoliza}"/>
+								<h:message for="polizaBeanAddIdPoliza" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(polizaBean.added)}" id="tasaBeanTasaPolizasAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{polizaBean.add.tasa}" value="#{tasaBean.tasa}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="tasaBeanTasaDetalleTasaCondicions" value="Detalle Tasa Condicions:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{tasaBean.tasa.detalleTasaCondicions}"/>
+					<h:dataTable id="tasaBeanTasaDetalleTasaCondicions" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Detalle Tasa Condicion"/>
+							</f:facet>
+							<h:link outcome="/parametros/detalleTasaCondicion/view">
+								<f:param name="id" value="#{_item.idDetalleTasaCondicion}"/>
+								<h:outputText id="itemIdDetalleTasaCondicion" value="#{_item.idDetalleTasaCondicion}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="detalleTasaCondicionBeanAddIdDetalleTasaCondicion" value="#{detalleTasaCondicionBean.add.idDetalleTasaCondicion}"/>
+								<h:message for="detalleTasaCondicionBeanAddIdDetalleTasaCondicion" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(detalleTasaCondicionBean.added)}" id="tasaBeanTasaDetalleTasaCondicionsAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{detalleTasaCondicionBean.add.tasa}" value="#{tasaBean.tasa}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Guardar" action='#{tasaBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty tasaBean.id}'>
+						<h:link value="Cancelar" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{tasaBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{tasaBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

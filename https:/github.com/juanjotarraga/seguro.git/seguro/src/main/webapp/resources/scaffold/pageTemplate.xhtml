@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>#{empty pageTitle ? 'Page Title' : pageTitle}</title>
+	<link rel="icon" href='#{resource["favicon.ico"]}' />
+	<h:outputStylesheet name="bootstrap.css" />
+	<h:outputStylesheet name="forge-style.css" />
+</h:head>
+
+<h:body>
+	<ui:debug rendered="#{facesContext.application.projectStage == 'Development'}" />
+	
+	
+	<div class="container forgecontainer">
+		<div id="navigation">
+		
+		
+			<h:link id="homeLink" outcome="/index.xhtml">
+				<img src='#{resource["aseguradora.png"]}' alt="Forge... get hammered" border="0" style="width : 200px; height : 202px;"/>
+			</h:link>
+			
+			
+			<p:panelMenu style="width:300px">
+
+		<p:submenu label="Administracion" rendered="#{request.isUserInRole('SUPER')}">
+        	<p:menuitem value="Usuarios" outcome="/admin/usuario/search"/>
+        	<p:menuitem value="Aseguradora" outcome="/admin/aseguradora/search"/>
+        <p:separator/>	
+        </p:submenu>
+        <p:submenu label="Parametros" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN') or request.isUserInRole('USUARIO1')}">
+			<p:menuitem value="Marca Vehiculo" outcome="/parametros/marca/search"/>
+			<p:menuitem value="Modelo Vehiculo" outcome="/parametros/modelo/search"/>
+			<p:menuitem value="Tipo Vehiculo" outcome="/parametros/tipo/search"/>
+			<p:menuitem value="Centro de Salud" outcome="/parametros/centroSalud/search"/>
+			<p:menuitem value="Servicio de Salud" outcome="/parametros/servicioSalud/search"/>
+			<p:menuitem value="Taller Mecanico" outcome="/parametros/tallerMecanico/search"/>
+			<p:menuitem value="Servicio Mecanico" outcome="/parametros/servicioMecanico/search"/>
+			<p:menuitem value="Compania" outcome="/parametros/compania/search"/>
+			<p:menuitem value="Condiciones" outcome="/parametros/condicion/search"/>
+			<p:menuitem value="Tasa" outcome="/parametros/tasa/search"/>		
+        </p:submenu>
+        <p:separator/>
+        <p:submenu label="Procesos" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN') or request.isUserInRole('USUARIO1')}">
+            <p:menuitem value="CLiente" outcome="/procesos/cliente/search"/>
+            <p:menuitem value="Vehiculo" outcome="/procesos/automotor/search"/>         
+                     
+        </p:submenu>
+        <p:separator/>
+         <p:submenu label="Reportes" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN') or request.isUserInRole('USUARIO2')}">
+         
+                     
+        </p:submenu>
+        <p:separator/>
+         <p:submenu label="Informes" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN') or request.isUserInRole('USUARIO2')}">
+      
+                     
+        </p:submenu>
+        <p:separator />
+         <p:submenu label="Utilitarios" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN') or request.isUserInRole('USUARIO1')}">
+       
+                     
+        </p:submenu>
+        <p:separator />
+    </p:panelMenu>
+			
+			
+			
+<!--
+	<div class="container forgecontainer">
+		<div id="navigation">
+			<h:link id="homeLink" outcome="/index.xhtml">
+				<img src='#{resource["forge-logo.png"]}' alt="Forge... get hammered" border="0" />
+			</h:link>
+			<ul>
+				<li>
+					<h:link outcome="/aseguradora/search" value="Aseguradora"/>
+				</li>
+				<li>
+					<h:link outcome="/automotor/search" value="Automotor"/>
+				</li>
+				<li>
+					<h:link outcome="/centroSalud/search" value="Centro Salud"/>
+				</li>
+				<li>
+					<h:link outcome="/cliente/search" value="Cliente"/>
+				</li>
+				<li>
+					<h:link outcome="/coberturaSiniestro/search" value="Cobertura Siniestro"/>
+				</li>
+				<li>
+					<h:link outcome="/compania/search" value="Compania"/>
+				</li>
+				<li>
+					<h:link outcome="/condicion/search" value="Condicion"/>
+				</li>
+				<li>
+					<h:link outcome="/detalleTasaCondicion/search" value="Detalle Tasa Condicion"/>
+				</li>
+				<li>
+					<h:link outcome="/marca/search" value="Marca"/>
+				</li>
+				<li>
+					<h:link outcome="/modelo/search" value="Modelo"/>
+				</li>
+				<li>
+					<h:link outcome="/planPago/search" value="Plan Pago"/>
+				</li>
+				<li>
+					<h:link outcome="/poliza/search" value="Poliza"/>
+				</li>
+				<li>
+					<h:link outcome="/polizaCobertura/search" value="Poliza Cobertura"/>
+				</li>
+				<li>
+					<h:link outcome="/polizaDocumento/search" value="Poliza Documento"/>
+				</li>
+				<li>
+					<h:link outcome="/polizaFoto/search" value="Poliza Foto"/>
+				</li>
+				<li>
+					<h:link outcome="/prima/search" value="Prima"/>
+				</li>
+				<li>
+					<h:link outcome="/recuperacionMedica/search" value="Recuperacion Medica"/>
+				</li>
+				<li>
+					<h:link outcome="/restauracionMecanica/search" value="Restauracion Mecanica"/>
+				</li>
+				<li>
+					<h:link outcome="/servicioMecanico/search" value="Servicio Mecanico"/>
+				</li>
+				<li>
+					<h:link outcome="/servicioSalud/search" value="Servicio Salud"/>
+				</li>
+				<li>
+					<h:link outcome="/siniestro/search" value="Siniestro"/>
+				</li>
+				<li>
+					<h:link outcome="/siniestroDocumento/search" value="Siniestro Documento"/>
+				</li>
+				<li>
+					<h:link outcome="/siniestroFoto/search" value="Siniestro Foto"/>
+				</li>
+				<li>
+					<h:link outcome="/tallerMecanico/search" value="Taller Mecanico"/>
+				</li>
+				<li>
+					<h:link outcome="/tasa/search" value="Tasa"/>
+				</li>
+				<li>
+					<h:link outcome="/tipo/search" value="Tipo"/>
+				</li>
+				<li>
+					<h:link outcome="/usuario/search" value="Usuario"/>
+				</li>
+				<li>
+					<h:link outcome="/usuarioRol/search" value="Usuario Rol"/>
+				</li>
+			</ul>
+		</div>
+		
+-->
+		</div>
+		
+		<div id="content">
+			<h1>
+			<table style="width:100%">
+  				<tr>
+    				<td>
+   					 <ui:insert name="header" />
+   					 
+   					 </td>
+   					<td align="right">
+   					
+    					<h:outputLink rendered="#{request.getUserPrincipal() != null}" value="#{request.contextPath}/logoutServlet" >
+                            <h:graphicImage  value="/resources/logout.png" width="80" height="80" />
+                        </h:outputLink>
+    				</td> 
+ 				</tr>
+			</table>
+				
+			</h1>
+			<h2>
+				<ui:insert name="subheader" />
+				
+			</h2>
+
+			<ui:insert name="main" />
+		</div>
+	</div>
+
+	<footer>
+	<!-- 
+		<div id="footer-wrapper">
+	    	<p>Powered by <a href="http://jboss.org/forge">Forge</a></p>
+	    </div>
+	 -->
+	</footer>
+
+</h:body>
+</html>

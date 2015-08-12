@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{siniestroBean.id}'/>
+		<f:event type="preRenderView" listener='#{siniestroBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Siniestro"/>
+
+	<ui:define name="header">
+		Siniestro
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Siniestro
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="siniestroBeanSiniestroIdSiniestro" value="Id Siniestro:"/>
+			<h:outputText id="siniestroBeanSiniestroIdSiniestro" value="#{siniestroBean.siniestro.idSiniestro}"/>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroPoliza" value="Poliza:"/>
+			<h:link id="siniestroBeanSiniestroPoliza" outcome="/poliza/view" rendered="#{!empty siniestroBean.siniestro.poliza}" value="#{siniestroBean.siniestro.poliza}">
+				<f:param name="id" value="#{siniestroBean.siniestro.poliza.idPoliza}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroNombreCliente" value="Nombre Cliente:"/>
+			<h:outputText id="siniestroBeanSiniestroNombreCliente" value="#{siniestroBean.siniestro.nombreCliente}"/>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroDireccion" value="Direccion:"/>
+			<h:outputText id="siniestroBeanSiniestroDireccion" value="#{siniestroBean.siniestro.direccion}"/>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroTelefono" value="Telefono:"/>
+			<h:outputText id="siniestroBeanSiniestroTelefono" value="#{siniestroBean.siniestro.telefono}"/>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroFechaSinistro" value="Fecha Sinistro:"/>
+			<h:outputText id="siniestroBeanSiniestroFechaSinistro" value="#{siniestroBean.siniestro.fechaSinistro}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroAutoridadIntervino" value="Autoridad Intervino:"/>
+			<h:outputText id="siniestroBeanSiniestroAutoridadIntervino" value="#{siniestroBean.siniestro.autoridadIntervino}"/>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroMontoReclamado" value="Monto Reclamado:"/>
+			<h:outputText id="siniestroBeanSiniestroMontoReclamado" value="#{siniestroBean.siniestro.montoReclamado}"/>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroMontoIndemnizado" value="Monto Indemnizado:"/>
+			<h:outputText id="siniestroBeanSiniestroMontoIndemnizado" value="#{siniestroBean.siniestro.montoIndemnizado}"/>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroFranquicia" value="Franquicia:"/>
+			<h:outputText id="siniestroBeanSiniestroFranquicia" value="#{siniestroBean.siniestro.franquicia}"/>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroFlagEstado" value="Flag Estado:"/>
+			<h:outputText id="siniestroBeanSiniestroFlagEstado" value="#{siniestroBean.siniestro.flagEstado}"/>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroBreveNarracion" value="Breve Narracion:"/>
+			<h:outputText id="siniestroBeanSiniestroBreveNarracion" value="#{siniestroBean.siniestro.breveNarracion}"/>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroNroPoliza" value="Nro Poliza:"/>
+			<h:outputText id="siniestroBeanSiniestroNroPoliza" value="#{siniestroBean.siniestro.nroPoliza}"/>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroLugar" value="Lugar:"/>
+			<h:outputText id="siniestroBeanSiniestroLugar" value="#{siniestroBean.siniestro.lugar}"/>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroNumeroCaso" value="Numero Caso:"/>
+			<h:outputText id="siniestroBeanSiniestroNumeroCaso" value="#{siniestroBean.siniestro.numeroCaso}"/>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroFechaReg" value="Fecha Reg:"/>
+			<h:outputText id="siniestroBeanSiniestroFechaReg" value="#{siniestroBean.siniestro.fechaReg}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroUsuarioReg" value="Usuario Reg:"/>
+			<h:outputText id="siniestroBeanSiniestroUsuarioReg" value="#{siniestroBean.siniestro.usuarioReg}"/>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroFechaMod" value="Fecha Mod:"/>
+			<h:outputText id="siniestroBeanSiniestroFechaMod" value="#{siniestroBean.siniestro.fechaMod}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroUsuarioMod" value="Usuario Mod:"/>
+			<h:outputText id="siniestroBeanSiniestroUsuarioMod" value="#{siniestroBean.siniestro.usuarioMod}"/>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroFechaBorrado" value="Fecha Borrado:"/>
+			<h:outputText id="siniestroBeanSiniestroFechaBorrado" value="#{siniestroBean.siniestro.fechaBorrado}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroUsuarioBorrado" value="Usuario Borrado:"/>
+			<h:outputText id="siniestroBeanSiniestroUsuarioBorrado" value="#{siniestroBean.siniestro.usuarioBorrado}"/>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroSiniestroDocumentos" value="Siniestro Documentos:"/>
+			<h:dataTable id="siniestroBeanSiniestroSiniestroDocumentos" styleClass="data-table" value="#{forgeview:asList(siniestroBean.siniestro.siniestroDocumentos)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Psiniestro Documento"/>
+					</f:facet>
+					<h:link outcome="/siniestroDocumento/view">
+						<f:param name="id" value="#{_item.idPsiniestroDocumento}"/>
+						<h:outputText id="itemIdPsiniestroDocumento" value="#{_item.idPsiniestroDocumento}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroRestauracionMecanicas" value="Restauracion Mecanicas:"/>
+			<h:dataTable id="siniestroBeanSiniestroRestauracionMecanicas" styleClass="data-table" value="#{forgeview:asList(siniestroBean.siniestro.restauracionMecanicas)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Restauracion Mecanica"/>
+					</f:facet>
+					<h:link outcome="/procesos/restauracionMecanica/view">
+						<f:param name="id" value="#{_item.idRestauracionMecanica}"/>
+						<h:outputText id="itemIdRestauracionMecanica" value="#{_item.idRestauracionMecanica}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroCoberturaSiniestros" value="Cobertura Siniestros:"/>
+			<h:dataTable id="siniestroBeanSiniestroCoberturaSiniestros" styleClass="data-table" value="#{forgeview:asList(siniestroBean.siniestro.coberturaSiniestros)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Cobertura Siniestro"/>
+					</f:facet>
+					<h:link outcome="/procesos/coberturaSiniestro/view">
+						<f:param name="id" value="#{_item.idCoberturaSiniestro}"/>
+						<h:outputText id="itemIdCoberturaSiniestro" value="#{_item.idCoberturaSiniestro}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroRecuperacionMedicas" value="Recuperacion Medicas:"/>
+			<h:dataTable id="siniestroBeanSiniestroRecuperacionMedicas" styleClass="data-table" value="#{forgeview:asList(siniestroBean.siniestro.recuperacionMedicas)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Recuperacion Medica"/>
+					</f:facet>
+					<h:link outcome="/procesos/recuperacionMedica/view">
+						<f:param name="id" value="#{_item.idRecuperacionMedica}"/>
+						<h:outputText id="itemIdRecuperacionMedica" value="#{_item.idRecuperacionMedica}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="siniestroBeanSiniestroSiniestroFotos" value="Siniestro Fotos:"/>
+			<h:dataTable id="siniestroBeanSiniestroSiniestroFotos" styleClass="data-table" value="#{forgeview:asList(siniestroBean.siniestro.siniestroFotos)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Siniestro Foto"/>
+					</f:facet>
+					<h:link outcome="/siniestroFoto/view">
+						<f:param name="id" value="#{_item.idSiniestroFoto}"/>
+						<h:outputText id="itemIdSiniestroFoto" value="#{_item.idSiniestroFoto}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="Ver Todos" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Agregar" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

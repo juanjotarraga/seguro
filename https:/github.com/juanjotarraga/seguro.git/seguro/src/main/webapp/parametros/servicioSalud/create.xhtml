@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{servicioSaludBean.id}'/>
+		<f:event type="preRenderView" listener='#{servicioSaludBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Servicio Salud"/>
+
+	<ui:define name="header">
+		Servicio Salud
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty servicioSaludBean.id}'>
+				Edicion de Servicio Salud
+			</c:when>
+			<c:otherwise>
+				Creacion de Servicio Salud
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="servicioSaludBeanServicioSaludIdServicioSalud" value="Id Servicio Salud:"/>
+				<h:panelGroup>
+					<h:inputText id="servicioSaludBeanServicioSaludIdServicioSalud" required="true" value="#{servicioSaludBean.servicioSalud.idServicioSalud}"/>
+					<h:message for="servicioSaludBeanServicioSaludIdServicioSalud" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="servicioSaludBeanServicioSaludNombre" value="Nombre:"/>
+				<h:panelGroup>
+					<h:inputText id="servicioSaludBeanServicioSaludNombre" maxLength="200" value="#{servicioSaludBean.servicioSalud.nombre}"/>
+					<h:message for="servicioSaludBeanServicioSaludNombre" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="servicioSaludBeanServicioSaludDescripcion" value="Descripcion:"/>
+				<h:panelGroup>
+					<h:inputText id="servicioSaludBeanServicioSaludDescripcion" maxLength="500" value="#{servicioSaludBean.servicioSalud.descripcion}"/>
+					<h:message for="servicioSaludBeanServicioSaludDescripcion" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="servicioSaludBeanServicioSaludFlagEstado" value="Flag Estado:"/>
+				<h:panelGroup>
+					<h:inputText id="servicioSaludBeanServicioSaludFlagEstado" maxLength="2" value="#{servicioSaludBean.servicioSalud.flagEstado}"/>
+					<h:message for="servicioSaludBeanServicioSaludFlagEstado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="servicioSaludBeanServicioSaludFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="servicioSaludBeanServicioSaludFechaReg" maxLength="29" value="#{servicioSaludBean.servicioSalud.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="servicioSaludBeanServicioSaludFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="servicioSaludBeanServicioSaludUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="servicioSaludBeanServicioSaludUsuarioReg" maxLength="30" value="#{servicioSaludBean.servicioSalud.usuarioReg}"/>
+					<h:message for="servicioSaludBeanServicioSaludUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="servicioSaludBeanServicioSaludFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="servicioSaludBeanServicioSaludFechaMod" maxLength="29" value="#{servicioSaludBean.servicioSalud.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="servicioSaludBeanServicioSaludFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="servicioSaludBeanServicioSaludUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="servicioSaludBeanServicioSaludUsuarioMod" maxLength="30" value="#{servicioSaludBean.servicioSalud.usuarioMod}"/>
+					<h:message for="servicioSaludBeanServicioSaludUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="servicioSaludBeanServicioSaludFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="servicioSaludBeanServicioSaludFechaBorrado" maxLength="29" value="#{servicioSaludBean.servicioSalud.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="servicioSaludBeanServicioSaludFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="servicioSaludBeanServicioSaludUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="servicioSaludBeanServicioSaludUsuarioBorrado" maxLength="30" value="#{servicioSaludBean.servicioSalud.usuarioBorrado}"/>
+					<h:message for="servicioSaludBeanServicioSaludUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="servicioSaludBeanServicioSaludRecuperacionMedicas" value="Recuperacion Medicas:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{servicioSaludBean.servicioSalud.recuperacionMedicas}"/>
+					<h:dataTable id="servicioSaludBeanServicioSaludRecuperacionMedicas" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Recuperacion Medica"/>
+							</f:facet>
+							<h:link outcome="/procesos/recuperacionMedica/view">
+								<f:param name="id" value="#{_item.idRecuperacionMedica}"/>
+								<h:outputText id="itemIdRecuperacionMedica" value="#{_item.idRecuperacionMedica}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="recuperacionMedicaBeanAddIdRecuperacionMedica" value="#{recuperacionMedicaBean.add.idRecuperacionMedica}"/>
+								<h:message for="recuperacionMedicaBeanAddIdRecuperacionMedica" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(recuperacionMedicaBean.added)}" id="servicioSaludBeanServicioSaludRecuperacionMedicasAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{recuperacionMedicaBean.add.servicioSalud}" value="#{servicioSaludBean.servicioSalud}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Guardar" action='#{servicioSaludBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty servicioSaludBean.id}'>
+						<h:link value="Cancelar" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{servicioSaludBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{servicioSaludBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

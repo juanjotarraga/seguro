@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{siniestroBean.page}'/>
+		<f:event type="preRenderView" listener='#{siniestroBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Siniestro entities"/>
+
+	<ui:define name="header">
+		Siniestro
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Siniestro entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="siniestroBeanExampleIdSiniestro" value="Id Siniestro:"/>
+						<h:panelGroup>
+							<h:inputText id="siniestroBeanExampleIdSiniestro" value="#{siniestroBean.example.idSiniestro}"/>
+							<h:message for="siniestroBeanExampleIdSiniestro" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="siniestroBeanExamplePoliza" value="Poliza:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{polizaBean.converter}" id="siniestroBeanExamplePoliza" value="#{siniestroBean.example.poliza}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{polizaBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="siniestroBeanExamplePoliza" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="siniestroBeanExampleNombreCliente" value="Nombre Cliente:"/>
+						<h:panelGroup>
+							<h:inputText id="siniestroBeanExampleNombreCliente" maxLength="90" value="#{siniestroBean.example.nombreCliente}"/>
+							<h:message for="siniestroBeanExampleNombreCliente" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="siniestroBeanExampleDireccion" value="Direccion:"/>
+						<h:panelGroup>
+							<h:inputText id="siniestroBeanExampleDireccion" maxLength="200" value="#{siniestroBean.example.direccion}"/>
+							<h:message for="siniestroBeanExampleDireccion" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="siniestroBeanExampleTelefono" value="Telefono:"/>
+						<h:panelGroup>
+							<h:inputText id="siniestroBeanExampleTelefono" value="#{siniestroBean.example.telefono}"/>
+							<h:message for="siniestroBeanExampleTelefono" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{siniestroBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{siniestroBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="siniestroBeanPageItems" styleClass="data-table" value="#{siniestroBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Siniestro"/>
+					</f:facet>
+					<h:link outcome="/siniestro/view">
+						<f:param name="id" value="#{_item.idSiniestro}"/>
+						<h:outputText id="itemIdSiniestro" value="#{_item.idSiniestro}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{siniestroBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

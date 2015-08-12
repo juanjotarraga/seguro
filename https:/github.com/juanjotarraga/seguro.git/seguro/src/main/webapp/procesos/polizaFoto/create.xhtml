@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{polizaFotoBean.id}'/>
+		<f:event type="preRenderView" listener='#{polizaFotoBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Poliza Foto"/>
+
+	<ui:define name="header">
+		Poliza Foto
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty polizaFotoBean.id}'>
+				Edicion de Poliza Foto
+			</c:when>
+			<c:otherwise>
+				Creacion de Poliza Foto
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="polizaFotoBeanPolizaFotoIdPolizaFoto" value="Id Poliza Foto:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaFotoBeanPolizaFotoIdPolizaFoto" required="true" value="#{polizaFotoBean.polizaFoto.idPolizaFoto}"/>
+					<h:message for="polizaFotoBeanPolizaFotoIdPolizaFoto" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="polizaFotoBeanPolizaFotoPoliza" value="Poliza:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{polizaBean.converter}" id="polizaFotoBeanPolizaFotoPoliza" value="#{polizaFotoBean.polizaFoto.poliza}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{polizaBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="polizaFotoBeanPolizaFotoPoliza" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaFotoBeanPolizaFotoFotoFrontal" value="Foto Frontal:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaFotoBeanPolizaFotoFotoFrontal" maxLength="200" value="#{polizaFotoBean.polizaFoto.fotoFrontal}"/>
+					<h:message for="polizaFotoBeanPolizaFotoFotoFrontal" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaFotoBeanPolizaFotoFotoLateralDerecho" value="Foto Lateral Derecho:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaFotoBeanPolizaFotoFotoLateralDerecho" maxLength="200" value="#{polizaFotoBean.polizaFoto.fotoLateralDerecho}"/>
+					<h:message for="polizaFotoBeanPolizaFotoFotoLateralDerecho" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaFotoBeanPolizaFotoFotoLateralIzquierdo" value="Foto Lateral Izquierdo:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaFotoBeanPolizaFotoFotoLateralIzquierdo" maxLength="200" value="#{polizaFotoBean.polizaFoto.fotoLateralIzquierdo}"/>
+					<h:message for="polizaFotoBeanPolizaFotoFotoLateralIzquierdo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaFotoBeanPolizaFotoFotoTrasera" value="Foto Trasera:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaFotoBeanPolizaFotoFotoTrasera" maxLength="200" value="#{polizaFotoBean.polizaFoto.fotoTrasera}"/>
+					<h:message for="polizaFotoBeanPolizaFotoFotoTrasera" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaFotoBeanPolizaFotoFotoAccesorio" value="Foto Accesorio:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaFotoBeanPolizaFotoFotoAccesorio" maxLength="200" value="#{polizaFotoBean.polizaFoto.fotoAccesorio}"/>
+					<h:message for="polizaFotoBeanPolizaFotoFotoAccesorio" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaFotoBeanPolizaFotoFotoOtros" value="Foto Otros:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaFotoBeanPolizaFotoFotoOtros" maxLength="200" value="#{polizaFotoBean.polizaFoto.fotoOtros}"/>
+					<h:message for="polizaFotoBeanPolizaFotoFotoOtros" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaFotoBeanPolizaFotoFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaFotoBeanPolizaFotoFechaReg" maxLength="29" value="#{polizaFotoBean.polizaFoto.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="polizaFotoBeanPolizaFotoFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaFotoBeanPolizaFotoUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaFotoBeanPolizaFotoUsuarioReg" maxLength="30" value="#{polizaFotoBean.polizaFoto.usuarioReg}"/>
+					<h:message for="polizaFotoBeanPolizaFotoUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaFotoBeanPolizaFotoFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaFotoBeanPolizaFotoFechaMod" maxLength="29" value="#{polizaFotoBean.polizaFoto.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="polizaFotoBeanPolizaFotoFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaFotoBeanPolizaFotoUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaFotoBeanPolizaFotoUsuarioMod" maxLength="30" value="#{polizaFotoBean.polizaFoto.usuarioMod}"/>
+					<h:message for="polizaFotoBeanPolizaFotoUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaFotoBeanPolizaFotoFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaFotoBeanPolizaFotoFechaBorrado" maxLength="29" value="#{polizaFotoBean.polizaFoto.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="polizaFotoBeanPolizaFotoFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaFotoBeanPolizaFotoUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaFotoBeanPolizaFotoUsuarioBorrado" maxLength="30" value="#{polizaFotoBean.polizaFoto.usuarioBorrado}"/>
+					<h:message for="polizaFotoBeanPolizaFotoUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Guardar" action='#{polizaFotoBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty polizaFotoBean.id}'>
+						<h:link value="Cancelar" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{polizaFotoBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{polizaFotoBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

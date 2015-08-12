@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{companiaBean.id}'/>
+		<f:event type="preRenderView" listener='#{companiaBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Compania"/>
+
+	<ui:define name="header">
+		Compania
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty companiaBean.id}'>
+				Edicion de Compania
+			</c:when>
+			<c:otherwise>
+				Creacion de Compania
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="companiaBeanCompaniaIdCompania" value="Id Compania:"/>
+				<h:panelGroup>
+					<h:inputText id="companiaBeanCompaniaIdCompania" required="true" value="#{companiaBean.compania.idCompania}"/>
+					<h:message for="companiaBeanCompaniaIdCompania" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="companiaBeanCompaniaNombre" value="Nombre:"/>
+				<h:panelGroup>
+					<h:inputText id="companiaBeanCompaniaNombre" maxLength="50" value="#{companiaBean.compania.nombre}"/>
+					<h:message for="companiaBeanCompaniaNombre" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="companiaBeanCompaniaAcronimo" value="Acronimo:"/>
+				<h:panelGroup>
+					<h:inputText id="companiaBeanCompaniaAcronimo" maxLength="50" value="#{companiaBean.compania.acronimo}"/>
+					<h:message for="companiaBeanCompaniaAcronimo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="companiaBeanCompaniaLogo" value="Logo:"/>
+				<h:panelGroup>
+					<h:inputText id="companiaBeanCompaniaLogo" maxLength="50" value="#{companiaBean.compania.logo}"/>
+					<h:message for="companiaBeanCompaniaLogo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="companiaBeanCompaniaMail" value="Mail:"/>
+				<h:panelGroup>
+					<h:inputText id="companiaBeanCompaniaMail" maxLength="50" value="#{companiaBean.compania.mail}"/>
+					<h:message for="companiaBeanCompaniaMail" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="companiaBeanCompaniaFlagEstado" value="Flag Estado:"/>
+				<h:panelGroup>
+					<h:inputText id="companiaBeanCompaniaFlagEstado" maxLength="2" value="#{companiaBean.compania.flagEstado}"/>
+					<h:message for="companiaBeanCompaniaFlagEstado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="companiaBeanCompaniaFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="companiaBeanCompaniaFechaReg" maxLength="29" value="#{companiaBean.compania.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="companiaBeanCompaniaFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="companiaBeanCompaniaUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="companiaBeanCompaniaUsuarioReg" maxLength="30" value="#{companiaBean.compania.usuarioReg}"/>
+					<h:message for="companiaBeanCompaniaUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="companiaBeanCompaniaFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="companiaBeanCompaniaFechaMod" maxLength="29" value="#{companiaBean.compania.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="companiaBeanCompaniaFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="companiaBeanCompaniaUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="companiaBeanCompaniaUsuarioMod" maxLength="30" value="#{companiaBean.compania.usuarioMod}"/>
+					<h:message for="companiaBeanCompaniaUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="companiaBeanCompaniaFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="companiaBeanCompaniaFechaBorrado" maxLength="29" value="#{companiaBean.compania.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="companiaBeanCompaniaFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="companiaBeanCompaniaUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="companiaBeanCompaniaUsuarioBorrado" maxLength="30" value="#{companiaBean.compania.usuarioBorrado}"/>
+					<h:message for="companiaBeanCompaniaUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="companiaBeanCompaniaPrimas" value="Primas:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{companiaBean.compania.primas}"/>
+					<h:dataTable id="companiaBeanCompaniaPrimas" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Prima"/>
+							</f:facet>
+							<h:link outcome="/procesos/prima/view">
+								<f:param name="id" value="#{_item.idPrima}"/>
+								<h:outputText id="itemIdPrima" value="#{_item.idPrima}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="primaBeanAddIdPrima" value="#{primaBean.add.idPrima}"/>
+								<h:message for="primaBeanAddIdPrima" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(primaBean.added)}" id="companiaBeanCompaniaPrimasAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{primaBean.add.compania}" value="#{companiaBean.compania}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="companiaBeanCompaniaTasas" value="Tasas:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{companiaBean.compania.tasas}"/>
+					<h:dataTable id="companiaBeanCompaniaTasas" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Tasa"/>
+							</f:facet>
+							<h:link outcome="/parametros/tasa/view">
+								<f:param name="id" value="#{_item.idTasa}"/>
+								<h:outputText id="itemIdTasa" value="#{_item.idTasa}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="tasaBeanAddIdTasa" value="#{tasaBean.add.idTasa}"/>
+								<h:message for="tasaBeanAddIdTasa" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(tasaBean.added)}" id="companiaBeanCompaniaTasasAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{tasaBean.add.compania}" value="#{companiaBean.compania}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Guardar" action='#{companiaBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty companiaBean.id}'>
+						<h:link value="Cancelar" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{companiaBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{companiaBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

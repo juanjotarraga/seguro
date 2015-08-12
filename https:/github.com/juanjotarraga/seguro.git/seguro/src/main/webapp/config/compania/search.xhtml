@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{companiaBean.page}'/>
+		<f:event type="preRenderView" listener='#{companiaBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Compania entities"/>
+
+	<ui:define name="header">
+		Compania
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Compania entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="companiaBeanExampleIdCompania" value="Id Compania:"/>
+						<h:panelGroup>
+							<h:inputText id="companiaBeanExampleIdCompania" value="#{companiaBean.example.idCompania}"/>
+							<h:message for="companiaBeanExampleIdCompania" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="companiaBeanExampleNombre" value="Nombre:"/>
+						<h:panelGroup>
+							<h:inputText id="companiaBeanExampleNombre" maxLength="50" value="#{companiaBean.example.nombre}"/>
+							<h:message for="companiaBeanExampleNombre" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="companiaBeanExampleAcronimo" value="Acronimo:"/>
+						<h:panelGroup>
+							<h:inputText id="companiaBeanExampleAcronimo" maxLength="50" value="#{companiaBean.example.acronimo}"/>
+							<h:message for="companiaBeanExampleAcronimo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="companiaBeanExampleLogo" value="Logo:"/>
+						<h:panelGroup>
+							<h:inputText id="companiaBeanExampleLogo" maxLength="50" value="#{companiaBean.example.logo}"/>
+							<h:message for="companiaBeanExampleLogo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="companiaBeanExampleMail" value="Mail:"/>
+						<h:panelGroup>
+							<h:inputText id="companiaBeanExampleMail" maxLength="50" value="#{companiaBean.example.mail}"/>
+							<h:message for="companiaBeanExampleMail" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{companiaBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{companiaBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="companiaBeanPageItems" styleClass="data-table" value="#{companiaBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Compania"/>
+					</f:facet>
+					<h:link outcome="/parametros/compania/view">
+						<f:param name="id" value="#{_item.idCompania}"/>
+						<h:outputText id="itemIdCompania" value="#{_item.idCompania}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{companiaBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

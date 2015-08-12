@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{condicionBean.page}'/>
+		<f:event type="preRenderView" listener='#{condicionBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Condicion entities"/>
+
+	<ui:define name="header">
+		Condicion
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Condicion entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="condicionBeanExampleIdCondicion" value="Id Condicion:"/>
+						<h:panelGroup>
+							<h:inputText id="condicionBeanExampleIdCondicion" value="#{condicionBean.example.idCondicion}"/>
+							<h:message for="condicionBeanExampleIdCondicion" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="condicionBeanExampleNombre" value="Nombre:"/>
+						<h:panelGroup>
+							<h:inputText id="condicionBeanExampleNombre" maxLength="250" value="#{condicionBean.example.nombre}"/>
+							<h:message for="condicionBeanExampleNombre" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="condicionBeanExampleAcronimo" value="Acronimo:"/>
+						<h:panelGroup>
+							<h:inputText id="condicionBeanExampleAcronimo" maxLength="500" value="#{condicionBean.example.acronimo}"/>
+							<h:message for="condicionBeanExampleAcronimo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="condicionBeanExampleFlagEstado" value="Flag Estado:"/>
+						<h:panelGroup>
+							<h:inputText id="condicionBeanExampleFlagEstado" maxLength="2" value="#{condicionBean.example.flagEstado}"/>
+							<h:message for="condicionBeanExampleFlagEstado" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="condicionBeanExampleUsuarioReg" value="Usuario Reg:"/>
+						<h:panelGroup>
+							<h:inputText id="condicionBeanExampleUsuarioReg" maxLength="30" value="#{condicionBean.example.usuarioReg}"/>
+							<h:message for="condicionBeanExampleUsuarioReg" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{condicionBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{condicionBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="condicionBeanPageItems" styleClass="data-table" value="#{condicionBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Condicion"/>
+					</f:facet>
+					<h:link outcome="/parametros/condicion/view">
+						<f:param name="id" value="#{_item.idCondicion}"/>
+						<h:outputText id="itemIdCondicion" value="#{_item.idCondicion}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{condicionBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

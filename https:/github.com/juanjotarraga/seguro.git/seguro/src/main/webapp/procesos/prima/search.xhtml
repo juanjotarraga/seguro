@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{primaBean.page}'/>
+		<f:event type="preRenderView" listener='#{primaBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Prima entities"/>
+
+	<ui:define name="header">
+		Prima
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Prima entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="primaBeanExampleIdPrima" value="Id Prima:"/>
+						<h:panelGroup>
+							<h:inputText id="primaBeanExampleIdPrima" value="#{primaBean.example.idPrima}"/>
+							<h:message for="primaBeanExampleIdPrima" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="primaBeanExampleCompania" value="Compania:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{companiaBean.converter}" id="primaBeanExampleCompania" value="#{primaBean.example.compania}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{companiaBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="primaBeanExampleCompania" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="primaBeanExamplePoliza" value="Poliza:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{polizaBean.converter}" id="primaBeanExamplePoliza" value="#{primaBean.example.poliza}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{polizaBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="primaBeanExamplePoliza" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="primaBeanExampleUsuarioReg" value="Usuario Reg:"/>
+						<h:panelGroup>
+							<h:inputText id="primaBeanExampleUsuarioReg" maxLength="30" value="#{primaBean.example.usuarioReg}"/>
+							<h:message for="primaBeanExampleUsuarioReg" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="primaBeanExampleUsuarioMod" value="Usuario Mod:"/>
+						<h:panelGroup>
+							<h:inputText id="primaBeanExampleUsuarioMod" maxLength="30" value="#{primaBean.example.usuarioMod}"/>
+							<h:message for="primaBeanExampleUsuarioMod" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{primaBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{primaBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="primaBeanPageItems" styleClass="data-table" value="#{primaBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Prima"/>
+					</f:facet>
+					<h:link outcome="/procesos/prima/view">
+						<f:param name="id" value="#{_item.idPrima}"/>
+						<h:outputText id="itemIdPrima" value="#{_item.idPrima}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{primaBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{polizaDocumentoBean.id}'/>
+		<f:event type="preRenderView" listener='#{polizaDocumentoBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Poliza Documento"/>
+
+	<ui:define name="header">
+		Poliza Documento
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Poliza Documento
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoIdPolizaDocumento" value="Id Poliza Documento:"/>
+			<h:outputText id="polizaDocumentoBeanPolizaDocumentoIdPolizaDocumento" value="#{polizaDocumentoBean.polizaDocumento.idPolizaDocumento}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoPoliza" value="Poliza:"/>
+			<h:link id="polizaDocumentoBeanPolizaDocumentoPoliza" outcome="/poliza/view" rendered="#{!empty polizaDocumentoBean.polizaDocumento.poliza}" value="#{polizaDocumentoBean.polizaDocumento.poliza}">
+				<f:param name="id" value="#{polizaDocumentoBean.polizaDocumento.poliza.idPoliza}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoCarnet" value="Carnet:"/>
+			<h:outputText id="polizaDocumentoBeanPolizaDocumentoCarnet" value="#{polizaDocumentoBean.polizaDocumento.carnet}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoRua" value="Rua:"/>
+			<h:outputText id="polizaDocumentoBeanPolizaDocumentoRua" value="#{polizaDocumentoBean.polizaDocumento.rua}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoOtros" value="Otros:"/>
+			<h:outputText id="polizaDocumentoBeanPolizaDocumentoOtros" value="#{polizaDocumentoBean.polizaDocumento.otros}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoFechaReg" value="Fecha Reg:"/>
+			<h:outputText id="polizaDocumentoBeanPolizaDocumentoFechaReg" value="#{polizaDocumentoBean.polizaDocumento.fechaReg}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoUsuarioReg" value="Usuario Reg:"/>
+			<h:outputText id="polizaDocumentoBeanPolizaDocumentoUsuarioReg" value="#{polizaDocumentoBean.polizaDocumento.usuarioReg}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoFechaMod" value="Fecha Mod:"/>
+			<h:outputText id="polizaDocumentoBeanPolizaDocumentoFechaMod" value="#{polizaDocumentoBean.polizaDocumento.fechaMod}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoUsuarioMod" value="Usuario Mod:"/>
+			<h:outputText id="polizaDocumentoBeanPolizaDocumentoUsuarioMod" value="#{polizaDocumentoBean.polizaDocumento.usuarioMod}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoFechaBorrado" value="Fecha Borrado:"/>
+			<h:outputText id="polizaDocumentoBeanPolizaDocumentoFechaBorrado" value="#{polizaDocumentoBean.polizaDocumento.fechaBorrado}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="polizaDocumentoBeanPolizaDocumentoUsuarioBorrado" value="Usuario Borrado:"/>
+			<h:outputText id="polizaDocumentoBeanPolizaDocumentoUsuarioBorrado" value="#{polizaDocumentoBean.polizaDocumento.usuarioBorrado}"/>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="Ver Todos" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Agregar" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

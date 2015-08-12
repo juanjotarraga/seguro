@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{siniestroFotoBean.page}'/>
+		<f:event type="preRenderView" listener='#{siniestroFotoBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Siniestro Foto entities"/>
+
+	<ui:define name="header">
+		Siniestro Foto
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Siniestro Foto entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="siniestroFotoBeanExampleIdSiniestroFoto" value="Id Siniestro Foto:"/>
+						<h:panelGroup>
+							<h:inputText id="siniestroFotoBeanExampleIdSiniestroFoto" value="#{siniestroFotoBean.example.idSiniestroFoto}"/>
+							<h:message for="siniestroFotoBeanExampleIdSiniestroFoto" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="siniestroFotoBeanExampleSiniestro" value="Siniestro:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{siniestroBean.converter}" id="siniestroFotoBeanExampleSiniestro" value="#{siniestroFotoBean.example.siniestro}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{siniestroBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="siniestroFotoBeanExampleSiniestro" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="siniestroFotoBeanExampleFotoFrontal" value="Foto Frontal:"/>
+						<h:panelGroup>
+							<h:inputText id="siniestroFotoBeanExampleFotoFrontal" maxLength="200" value="#{siniestroFotoBean.example.fotoFrontal}"/>
+							<h:message for="siniestroFotoBeanExampleFotoFrontal" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="siniestroFotoBeanExampleFotoLateralDerecho" value="Foto Lateral Derecho:"/>
+						<h:panelGroup>
+							<h:inputText id="siniestroFotoBeanExampleFotoLateralDerecho" maxLength="200" value="#{siniestroFotoBean.example.fotoLateralDerecho}"/>
+							<h:message for="siniestroFotoBeanExampleFotoLateralDerecho" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="siniestroFotoBeanExampleFotoLateralIzquierdo" value="Foto Lateral Izquierdo:"/>
+						<h:panelGroup>
+							<h:inputText id="siniestroFotoBeanExampleFotoLateralIzquierdo" maxLength="200" value="#{siniestroFotoBean.example.fotoLateralIzquierdo}"/>
+							<h:message for="siniestroFotoBeanExampleFotoLateralIzquierdo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{siniestroFotoBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{siniestroFotoBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="siniestroFotoBeanPageItems" styleClass="data-table" value="#{siniestroFotoBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Siniestro Foto"/>
+					</f:facet>
+					<h:link outcome="/siniestroFoto/view">
+						<f:param name="id" value="#{_item.idSiniestroFoto}"/>
+						<h:outputText id="itemIdSiniestroFoto" value="#{_item.idSiniestroFoto}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{siniestroFotoBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{aseguradoraBean.id}'/>
+		<f:event type="preRenderView" listener='#{aseguradoraBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Aseguradora"/>
+
+	<ui:define name="header">
+		Aseguradora
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Aseguradora
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="aseguradoraBeanAseguradoraIdAseguradora" value="Id Aseguradora:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraIdAseguradora" value="#{aseguradoraBean.aseguradora.idAseguradora}"/>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraNombreCorto" value="Nombre Corto:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraNombreCorto" value="#{aseguradoraBean.aseguradora.nombreCorto}"/>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraNombreLargo" value="Nombre Largo:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraNombreLargo" value="#{aseguradoraBean.aseguradora.nombreLargo}"/>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraLogo" value="Logo:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraLogo" value="#{aseguradoraBean.aseguradora.logo}"/>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraEmailResponsable" value="Email Responsable:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraEmailResponsable" value="#{aseguradoraBean.aseguradora.emailResponsable}"/>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraNitSuc" value="Nit Suc:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraNitSuc" value="#{aseguradoraBean.aseguradora.nitSuc}"/>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraFechaInicioOperaciones" value="Fecha Inicio Operaciones:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraFechaInicioOperaciones" value="#{aseguradoraBean.aseguradora.fechaInicioOperaciones}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraFechaFinOperaciones" value="Fecha Fin Operaciones:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraFechaFinOperaciones" value="#{aseguradoraBean.aseguradora.fechaFinOperaciones}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraNombreResponsable" value="Nombre Responsable:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraNombreResponsable" value="#{aseguradoraBean.aseguradora.nombreResponsable}"/>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraTelefonoResponsable" value="Telefono Responsable:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraTelefonoResponsable" value="#{aseguradoraBean.aseguradora.telefonoResponsable}"/>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraDireccionLegal" value="Direccion Legal:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraDireccionLegal" value="#{aseguradoraBean.aseguradora.direccionLegal}"/>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraFlagEstado" value="Flag Estado:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraFlagEstado" value="#{aseguradoraBean.aseguradora.flagEstado}"/>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraFechaReg" value="Fecha Reg:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraFechaReg" value="#{aseguradoraBean.aseguradora.fechaReg}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraUsuarioReg" value="Usuario Reg:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraUsuarioReg" value="#{aseguradoraBean.aseguradora.usuarioReg}"/>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraFechaMod" value="Fecha Mod:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraFechaMod" value="#{aseguradoraBean.aseguradora.fechaMod}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraUsuarioMod" value="Usuario Mod:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraUsuarioMod" value="#{aseguradoraBean.aseguradora.usuarioMod}"/>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraFechaBorrado" value="Fecha Borrado:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraFechaBorrado" value="#{aseguradoraBean.aseguradora.fechaBorrado}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraUsuarioBorrado" value="Usuario Borrado:"/>
+			<h:outputText id="aseguradoraBeanAseguradoraUsuarioBorrado" value="#{aseguradoraBean.aseguradora.usuarioBorrado}"/>
+			<h:outputText/>
+			<h:outputLabel for="aseguradoraBeanAseguradoraUsuarios" value="Usuarios:"/>
+			<h:dataTable id="aseguradoraBeanAseguradoraUsuarios" styleClass="data-table" value="#{forgeview:asList(aseguradoraBean.aseguradora.usuarios)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Usuario"/>
+					</f:facet>
+					<h:link outcome="/admin/usuario/view">
+						<f:param name="id" value="#{_item.idUsuario}"/>
+						<h:outputText id="itemIdUsuario" value="#{_item.idUsuario}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Usuario Login"/>
+					</f:facet>
+					<h:link outcome="/admin/usuario/view">
+						<f:param name="id" value="#{_item.idUsuario}"/>
+						<h:outputText id="itemUsuarioLogin" value="#{_item.usuarioLogin}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Usuario Password"/>
+					</f:facet>
+					<h:link outcome="/admin/usuario/view">
+						<f:param name="id" value="#{_item.idUsuario}"/>
+						<h:outputText id="itemUsuarioPassword" value="#{_item.usuarioPassword}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="Ver Todos" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Agregar" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

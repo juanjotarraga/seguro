@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{detalleTasaCondicionBean.page}'/>
+		<f:event type="preRenderView" listener='#{detalleTasaCondicionBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Detalle Tasa Condicion entities"/>
+
+	<ui:define name="header">
+		Detalle Tasa Condicion
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Detalle Tasa Condicion entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="detalleTasaCondicionBeanExampleIdDetalleTasaCondicion" value="Id Detalle Tasa Condicion:"/>
+						<h:panelGroup>
+							<h:inputText id="detalleTasaCondicionBeanExampleIdDetalleTasaCondicion" value="#{detalleTasaCondicionBean.example.idDetalleTasaCondicion}"/>
+							<h:message for="detalleTasaCondicionBeanExampleIdDetalleTasaCondicion" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="detalleTasaCondicionBeanExampleCondicion" value="Condicion:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{condicionBean.converter}" id="detalleTasaCondicionBeanExampleCondicion" value="#{detalleTasaCondicionBean.example.condicion}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{condicionBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="detalleTasaCondicionBeanExampleCondicion" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="detalleTasaCondicionBeanExampleTasa" value="Tasa:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{tasaBean.converter}" id="detalleTasaCondicionBeanExampleTasa" value="#{detalleTasaCondicionBean.example.tasa}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{tasaBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="detalleTasaCondicionBeanExampleTasa" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="detalleTasaCondicionBeanExampleObservaciones" value="Observaciones:"/>
+						<h:panelGroup>
+							<h:inputText id="detalleTasaCondicionBeanExampleObservaciones" maxLength="200" value="#{detalleTasaCondicionBean.example.observaciones}"/>
+							<h:message for="detalleTasaCondicionBeanExampleObservaciones" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="detalleTasaCondicionBeanExampleUsuarioReg" value="Usuario Reg:"/>
+						<h:panelGroup>
+							<h:inputText id="detalleTasaCondicionBeanExampleUsuarioReg" maxLength="30" value="#{detalleTasaCondicionBean.example.usuarioReg}"/>
+							<h:message for="detalleTasaCondicionBeanExampleUsuarioReg" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{detalleTasaCondicionBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{detalleTasaCondicionBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="detalleTasaCondicionBeanPageItems" styleClass="data-table" value="#{detalleTasaCondicionBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Detalle Tasa Condicion"/>
+					</f:facet>
+					<h:link outcome="/parametros/detalleTasaCondicion/view">
+						<f:param name="id" value="#{_item.idDetalleTasaCondicion}"/>
+						<h:outputText id="itemIdDetalleTasaCondicion" value="#{_item.idDetalleTasaCondicion}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{detalleTasaCondicionBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

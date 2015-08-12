@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{recuperacionMedicaBean.page}'/>
+		<f:event type="preRenderView" listener='#{recuperacionMedicaBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Recuperacion Medica entities"/>
+
+	<ui:define name="header">
+		Recuperacion Medica
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Recuperacion Medica entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="recuperacionMedicaBeanExampleIdRecuperacionMedica" value="Id Recuperacion Medica:"/>
+						<h:panelGroup>
+							<h:inputText id="recuperacionMedicaBeanExampleIdRecuperacionMedica" value="#{recuperacionMedicaBean.example.idRecuperacionMedica}"/>
+							<h:message for="recuperacionMedicaBeanExampleIdRecuperacionMedica" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="recuperacionMedicaBeanExampleCentroSalud" value="Centro Salud:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{centroSaludBean.converter}" id="recuperacionMedicaBeanExampleCentroSalud" value="#{recuperacionMedicaBean.example.centroSalud}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{centroSaludBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="recuperacionMedicaBeanExampleCentroSalud" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="recuperacionMedicaBeanExampleServicioSalud" value="Servicio Salud:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{servicioSaludBean.converter}" id="recuperacionMedicaBeanExampleServicioSalud" value="#{recuperacionMedicaBean.example.servicioSalud}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{servicioSaludBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="recuperacionMedicaBeanExampleServicioSalud" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="recuperacionMedicaBeanExampleSiniestro" value="Siniestro:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{siniestroBean.converter}" id="recuperacionMedicaBeanExampleSiniestro" value="#{recuperacionMedicaBean.example.siniestro}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{siniestroBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="recuperacionMedicaBeanExampleSiniestro" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="recuperacionMedicaBeanExampleDescripcion" value="Descripcion:"/>
+						<h:panelGroup>
+							<h:inputText id="recuperacionMedicaBeanExampleDescripcion" maxLength="500" value="#{recuperacionMedicaBean.example.descripcion}"/>
+							<h:message for="recuperacionMedicaBeanExampleDescripcion" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{recuperacionMedicaBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{recuperacionMedicaBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="recuperacionMedicaBeanPageItems" styleClass="data-table" value="#{recuperacionMedicaBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Recuperacion Medica"/>
+					</f:facet>
+					<h:link outcome="/procesos/recuperacionMedica/view">
+						<f:param name="id" value="#{_item.idRecuperacionMedica}"/>
+						<h:outputText id="itemIdRecuperacionMedica" value="#{_item.idRecuperacionMedica}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{recuperacionMedicaBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

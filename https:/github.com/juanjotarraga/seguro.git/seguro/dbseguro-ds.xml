@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema">
+ <datasource jndi-name="java:jboss/datasources/dbseguro" enabled="true" 
+     use-java-context="true" pool-name="dbseguro">
+  <connection-url>jdbc:postgresql://172.16.151.165:5444/segurodb</connection-url>
+  <driver>postgresql-8.3-604.jdbc3.jar</driver>
+  <pool></pool>
+  <security>
+   <user-name>seguro</user-name>
+   <password>seguro</password>
+  </security>
+ </datasource>
+</datasources>

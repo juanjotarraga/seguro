@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{polizaBean.page}'/>
+		<f:event type="preRenderView" listener='#{polizaBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Poliza entities"/>
+
+	<ui:define name="header">
+		Poliza
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Poliza entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="polizaBeanExampleIdPoliza" value="Id Poliza:"/>
+						<h:panelGroup>
+							<h:inputText id="polizaBeanExampleIdPoliza" value="#{polizaBean.example.idPoliza}"/>
+							<h:message for="polizaBeanExampleIdPoliza" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="polizaBeanExampleAutomotor" value="Automotor:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{automotorBean.converter}" id="polizaBeanExampleAutomotor" value="#{polizaBean.example.automotor}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{automotorBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="polizaBeanExampleAutomotor" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="polizaBeanExampleCliente" value="Cliente:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{clienteBean.converter}" id="polizaBeanExampleCliente" value="#{polizaBean.example.cliente}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{clienteBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="polizaBeanExampleCliente" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="polizaBeanExampleTasa" value="Tasa:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{tasaBean.converter}" id="polizaBeanExampleTasa" value="#{polizaBean.example.tasa}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{tasaBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="polizaBeanExampleTasa" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="polizaBeanExampleNroCotizacion" value="Nro Cotizacion:"/>
+						<h:panelGroup>
+							<h:inputText id="polizaBeanExampleNroCotizacion" value="#{polizaBean.example.nroCotizacion}"/>
+							<h:message for="polizaBeanExampleNroCotizacion" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{polizaBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{polizaBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="polizaBeanPageItems" styleClass="data-table" value="#{polizaBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Poliza"/>
+					</f:facet>
+					<h:link outcome="/procesos/poliza/view">
+						<f:param name="id" value="#{_item.idPoliza}"/>
+						<h:outputText id="itemIdPoliza" value="#{_item.idPoliza}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{polizaBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

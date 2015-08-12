@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{modeloBean.id}'/>
+		<f:event type="preRenderView" listener='#{modeloBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Modelo"/>
+
+	<ui:define name="header">
+		Modelo
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Modelo
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="modeloBeanModeloIdModelo" value="Id Modelo:"/>
+			<h:outputText id="modeloBeanModeloIdModelo" value="#{modeloBean.modelo.idModelo}"/>
+			<h:outputText/>
+			<h:outputLabel for="modeloBeanModeloMarca" value="Marca:"/>
+			<h:link id="modeloBeanModeloMarca" outcome="/marca/view" rendered="#{!empty modeloBean.modelo.marca}" value="#{modeloBean.modelo.marca}">
+				<f:param name="id" value="#{modeloBean.modelo.marca.idMarca}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="modeloBeanModeloNombre" value="Nombre:"/>
+			<h:outputText id="modeloBeanModeloNombre" value="#{modeloBean.modelo.nombre}"/>
+			<h:outputText/>
+			<h:outputLabel for="modeloBeanModeloFlagEstado" value="Flag Estado:"/>
+			<h:outputText id="modeloBeanModeloFlagEstado" value="#{modeloBean.modelo.flagEstado}"/>
+			<h:outputText/>
+			<h:outputLabel for="modeloBeanModeloFechaReg" value="Fecha Reg:"/>
+			<h:outputText id="modeloBeanModeloFechaReg" value="#{modeloBean.modelo.fechaReg}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="modeloBeanModeloUsuarioReg" value="Usuario Reg:"/>
+			<h:outputText id="modeloBeanModeloUsuarioReg" value="#{modeloBean.modelo.usuarioReg}"/>
+			<h:outputText/>
+			<h:outputLabel for="modeloBeanModeloFechaMod" value="Fecha Mod:"/>
+			<h:outputText id="modeloBeanModeloFechaMod" value="#{modeloBean.modelo.fechaMod}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="modeloBeanModeloUsuarioMod" value="Usuario Mod:"/>
+			<h:outputText id="modeloBeanModeloUsuarioMod" value="#{modeloBean.modelo.usuarioMod}"/>
+			<h:outputText/>
+			<h:outputLabel for="modeloBeanModeloFechaBorrado" value="Fecha Borrado:"/>
+			<h:outputText id="modeloBeanModeloFechaBorrado" value="#{modeloBean.modelo.fechaBorrado}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="modeloBeanModeloUsuarioBorrado" value="Usuario Borrado:"/>
+			<h:outputText id="modeloBeanModeloUsuarioBorrado" value="#{modeloBean.modelo.usuarioBorrado}"/>
+			<h:outputText/>
+			<h:outputLabel for="modeloBeanModeloAutomotors" value="Automotors:"/>
+			<h:dataTable id="modeloBeanModeloAutomotors" styleClass="data-table" value="#{forgeview:asList(modeloBean.modelo.automotors)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Automotor"/>
+					</f:facet>
+					<h:link outcome="/procesos/automotor/view">
+						<f:param name="id" value="#{_item.idAutomotor}"/>
+						<h:outputText id="itemIdAutomotor" value="#{_item.idAutomotor}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="Ver Todos" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Agregar" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

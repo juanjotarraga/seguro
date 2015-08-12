@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{tipoBean.page}'/>
+		<f:event type="preRenderView" listener='#{tipoBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Tipo entities"/>
+
+	<ui:define name="header">
+		Tipo
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Tipo entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="tipoBeanExampleIdTipo" value="Id Tipo:"/>
+						<h:panelGroup>
+							<h:inputText id="tipoBeanExampleIdTipo" value="#{tipoBean.example.idTipo}"/>
+							<h:message for="tipoBeanExampleIdTipo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="tipoBeanExampleNombre" value="Nombre:"/>
+						<h:panelGroup>
+							<h:inputText id="tipoBeanExampleNombre" maxLength="50" value="#{tipoBean.example.nombre}"/>
+							<h:message for="tipoBeanExampleNombre" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="tipoBeanExampleFlagEstado" value="Flag Estado:"/>
+						<h:panelGroup>
+							<h:inputText id="tipoBeanExampleFlagEstado" maxLength="2" value="#{tipoBean.example.flagEstado}"/>
+							<h:message for="tipoBeanExampleFlagEstado" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="tipoBeanExampleUsuarioReg" value="Usuario Reg:"/>
+						<h:panelGroup>
+							<h:inputText id="tipoBeanExampleUsuarioReg" maxLength="30" value="#{tipoBean.example.usuarioReg}"/>
+							<h:message for="tipoBeanExampleUsuarioReg" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="tipoBeanExampleUsuarioMod" value="Usuario Mod:"/>
+						<h:panelGroup>
+							<h:inputText id="tipoBeanExampleUsuarioMod" maxLength="30" value="#{tipoBean.example.usuarioMod}"/>
+							<h:message for="tipoBeanExampleUsuarioMod" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{tipoBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{tipoBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="tipoBeanPageItems" styleClass="data-table" value="#{tipoBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Tipo"/>
+					</f:facet>
+					<h:link outcome="/parametros/tipo/view">
+						<f:param name="id" value="#{_item.idTipo}"/>
+						<h:outputText id="itemIdTipo" value="#{_item.idTipo}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{tipoBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

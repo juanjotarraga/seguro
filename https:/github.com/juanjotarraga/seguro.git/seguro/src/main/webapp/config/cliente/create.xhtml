@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{clienteBean.id}'/>
+		<f:event type="preRenderView" listener='#{clienteBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Cliente"/>
+
+	<ui:define name="header">
+		Cliente
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty clienteBean.id}'>
+				Edicion de Cliente
+			</c:when>
+			<c:otherwise>
+				Creacion de Cliente
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="clienteBeanClienteIdCliente" value="Id Cliente:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteIdCliente" required="true" value="#{clienteBean.cliente.idCliente}"/>
+					<h:message for="clienteBeanClienteIdCliente" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="clienteBeanClienteNombres" value="Nombres:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteNombres" maxLength="50" value="#{clienteBean.cliente.nombres}"/>
+					<h:message for="clienteBeanClienteNombres" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteApellidos" value="Apellidos:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteApellidos" maxLength="50" value="#{clienteBean.cliente.apellidos}"/>
+					<h:message for="clienteBeanClienteApellidos" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteDireccion" value="Direccion:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteDireccion" maxLength="200" value="#{clienteBean.cliente.direccion}"/>
+					<h:message for="clienteBeanClienteDireccion" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteTelefono" value="Telefono:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteTelefono" value="#{clienteBean.cliente.telefono}"/>
+					<h:message for="clienteBeanClienteTelefono" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteCelular" value="Celular:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteCelular" value="#{clienteBean.cliente.celular}"/>
+					<h:message for="clienteBeanClienteCelular" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteEmail" value="Email:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteEmail" maxLength="80" value="#{clienteBean.cliente.email}"/>
+					<h:message for="clienteBeanClienteEmail" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteEstado" value="Estado:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteEstado" maxLength="10" value="#{clienteBean.cliente.estado}"/>
+					<h:message for="clienteBeanClienteEstado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteNit" value="Nit:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteNit" value="#{clienteBean.cliente.nit}"/>
+					<h:message for="clienteBeanClienteNit" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteCarnet" value="Carnet:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteCarnet" value="#{clienteBean.cliente.carnet}"/>
+					<h:message for="clienteBeanClienteCarnet" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteActividad" value="Actividad:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteActividad" maxLength="50" value="#{clienteBean.cliente.actividad}"/>
+					<h:message for="clienteBeanClienteActividad" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteProfesion" value="Profesion:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteProfesion" maxLength="50" value="#{clienteBean.cliente.profesion}"/>
+					<h:message for="clienteBeanClienteProfesion" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteFechaNacimiento" value="Fecha Nacimiento:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteFechaNacimiento" maxLength="29" value="#{clienteBean.cliente.fechaNacimiento}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="clienteBeanClienteFechaNacimiento" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteFlagEstado" value="Flag Estado:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteFlagEstado" maxLength="2" value="#{clienteBean.cliente.flagEstado}"/>
+					<h:message for="clienteBeanClienteFlagEstado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteFechaReg" maxLength="29" value="#{clienteBean.cliente.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="clienteBeanClienteFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteUsuarioReg" maxLength="30" value="#{clienteBean.cliente.usuarioReg}"/>
+					<h:message for="clienteBeanClienteUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteFechaMod" maxLength="29" value="#{clienteBean.cliente.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="clienteBeanClienteFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteUsuarioMod" maxLength="30" value="#{clienteBean.cliente.usuarioMod}"/>
+					<h:message for="clienteBeanClienteUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteFechaBorrado" maxLength="29" value="#{clienteBean.cliente.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="clienteBeanClienteFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClienteUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="clienteBeanClienteUsuarioBorrado" maxLength="30" value="#{clienteBean.cliente.usuarioBorrado}"/>
+					<h:message for="clienteBeanClienteUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clienteBeanClientePolizas" value="Polizas:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{clienteBean.cliente.polizas}"/>
+					<h:dataTable id="clienteBeanClientePolizas" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Poliza"/>
+							</f:facet>
+							<h:link outcome="/procesos/poliza/view">
+								<f:param name="id" value="#{_item.idPoliza}"/>
+								<h:outputText id="itemIdPoliza" value="#{_item.idPoliza}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="polizaBeanAddIdPoliza" value="#{polizaBean.add.idPoliza}"/>
+								<h:message for="polizaBeanAddIdPoliza" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(polizaBean.added)}" id="clienteBeanClientePolizasAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{polizaBean.add.cliente}" value="#{clienteBean.cliente}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Guardar" action='#{clienteBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty clienteBean.id}'>
+						<h:link value="Cancelar" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{clienteBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{clienteBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

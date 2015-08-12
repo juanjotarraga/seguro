@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{centroSaludBean.page}'/>
+		<f:event type="preRenderView" listener='#{centroSaludBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Centro Salud entities"/>
+
+	<ui:define name="header">
+		Centro Salud
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Centro Salud entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="centroSaludBeanExampleIdCentroSalud" value="Id Centro Salud:"/>
+						<h:panelGroup>
+							<h:inputText id="centroSaludBeanExampleIdCentroSalud" value="#{centroSaludBean.example.idCentroSalud}"/>
+							<h:message for="centroSaludBeanExampleIdCentroSalud" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="centroSaludBeanExampleNombre" value="Nombre:"/>
+						<h:panelGroup>
+							<h:inputText id="centroSaludBeanExampleNombre" maxLength="200" value="#{centroSaludBean.example.nombre}"/>
+							<h:message for="centroSaludBeanExampleNombre" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="centroSaludBeanExampleFlagEstado" value="Flag Estado:"/>
+						<h:panelGroup>
+							<h:inputText id="centroSaludBeanExampleFlagEstado" maxLength="2" value="#{centroSaludBean.example.flagEstado}"/>
+							<h:message for="centroSaludBeanExampleFlagEstado" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="centroSaludBeanExampleUsuarioReg" value="Usuario Reg:"/>
+						<h:panelGroup>
+							<h:inputText id="centroSaludBeanExampleUsuarioReg" maxLength="30" value="#{centroSaludBean.example.usuarioReg}"/>
+							<h:message for="centroSaludBeanExampleUsuarioReg" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="centroSaludBeanExampleUsuarioMod" value="Usuario Mod:"/>
+						<h:panelGroup>
+							<h:inputText id="centroSaludBeanExampleUsuarioMod" maxLength="30" value="#{centroSaludBean.example.usuarioMod}"/>
+							<h:message for="centroSaludBeanExampleUsuarioMod" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{centroSaludBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Agregar" action='#{centroSaludBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="centroSaludBeanPageItems" styleClass="data-table" value="#{centroSaludBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Centro Salud"/>
+					</f:facet>
+					<h:link outcome="/parametros/centroSalud/view">
+						<f:param name="id" value="#{_item.idCentroSalud}"/>
+						<h:outputText id="itemIdCentroSalud" value="#{_item.idCentroSalud}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{centroSaludBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

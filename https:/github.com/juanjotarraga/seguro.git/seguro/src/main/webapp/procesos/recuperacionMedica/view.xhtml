@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{recuperacionMedicaBean.id}'/>
+		<f:event type="preRenderView" listener='#{recuperacionMedicaBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Recuperacion Medica"/>
+
+	<ui:define name="header">
+		Recuperacion Medica
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Recuperacion Medica
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="recuperacionMedicaBeanRecuperacionMedicaIdRecuperacionMedica" value="Id Recuperacion Medica:"/>
+			<h:outputText id="recuperacionMedicaBeanRecuperacionMedicaIdRecuperacionMedica" value="#{recuperacionMedicaBean.recuperacionMedica.idRecuperacionMedica}"/>
+			<h:outputText/>
+			<h:outputLabel for="recuperacionMedicaBeanRecuperacionMedicaCentroSalud" value="Centro Salud:"/>
+			<h:link id="recuperacionMedicaBeanRecuperacionMedicaCentroSalud" outcome="/centroSalud/view" rendered="#{!empty recuperacionMedicaBean.recuperacionMedica.centroSalud}" value="#{recuperacionMedicaBean.recuperacionMedica.centroSalud}">
+				<f:param name="id" value="#{recuperacionMedicaBean.recuperacionMedica.centroSalud.idCentroSalud}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="recuperacionMedicaBeanRecuperacionMedicaServicioSalud" value="Servicio Salud:"/>
+			<h:link id="recuperacionMedicaBeanRecuperacionMedicaServicioSalud" outcome="/servicioSalud/view" rendered="#{!empty recuperacionMedicaBean.recuperacionMedica.servicioSalud}" value="#{recuperacionMedicaBean.recuperacionMedica.servicioSalud}">
+				<f:param name="id" value="#{recuperacionMedicaBean.recuperacionMedica.servicioSalud.idServicioSalud}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="recuperacionMedicaBeanRecuperacionMedicaSiniestro" value="Siniestro:"/>
+			<h:link id="recuperacionMedicaBeanRecuperacionMedicaSiniestro" outcome="/siniestro/view" rendered="#{!empty recuperacionMedicaBean.recuperacionMedica.siniestro}" value="#{recuperacionMedicaBean.recuperacionMedica.siniestro}">
+				<f:param name="id" value="#{recuperacionMedicaBean.recuperacionMedica.siniestro.idSiniestro}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="recuperacionMedicaBeanRecuperacionMedicaDescripcion" value="Descripcion:"/>
+			<h:outputText id="recuperacionMedicaBeanRecuperacionMedicaDescripcion" value="#{recuperacionMedicaBean.recuperacionMedica.descripcion}"/>
+			<h:outputText/>
+			<h:outputLabel for="recuperacionMedicaBeanRecuperacionMedicaMonto" value="Monto:"/>
+			<h:outputText id="recuperacionMedicaBeanRecuperacionMedicaMonto" value="#{recuperacionMedicaBean.recuperacionMedica.monto}"/>
+			<h:outputText/>
+			<h:outputLabel for="recuperacionMedicaBeanRecuperacionMedicaFechaReg" value="Fecha Reg:"/>
+			<h:outputText id="recuperacionMedicaBeanRecuperacionMedicaFechaReg" value="#{recuperacionMedicaBean.recuperacionMedica.fechaReg}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="recuperacionMedicaBeanRecuperacionMedicaUsuarioReg" value="Usuario Reg:"/>
+			<h:outputText id="recuperacionMedicaBeanRecuperacionMedicaUsuarioReg" value="#{recuperacionMedicaBean.recuperacionMedica.usuarioReg}"/>
+			<h:outputText/>
+			<h:outputLabel for="recuperacionMedicaBeanRecuperacionMedicaFechaMod" value="Fecha Mod:"/>
+			<h:outputText id="recuperacionMedicaBeanRecuperacionMedicaFechaMod" value="#{recuperacionMedicaBean.recuperacionMedica.fechaMod}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="recuperacionMedicaBeanRecuperacionMedicaUsuarioMod" value="Usuario Mod:"/>
+			<h:outputText id="recuperacionMedicaBeanRecuperacionMedicaUsuarioMod" value="#{recuperacionMedicaBean.recuperacionMedica.usuarioMod}"/>
+			<h:outputText/>
+			<h:outputLabel for="recuperacionMedicaBeanRecuperacionMedicaFechaBorrado" value="Fecha Borrado:"/>
+			<h:outputText id="recuperacionMedicaBeanRecuperacionMedicaFechaBorrado" value="#{recuperacionMedicaBean.recuperacionMedica.fechaBorrado}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="recuperacionMedicaBeanRecuperacionMedicaUsuarioBorrado" value="Usuario Borrado:"/>
+			<h:outputText id="recuperacionMedicaBeanRecuperacionMedicaUsuarioBorrado" value="#{recuperacionMedicaBean.recuperacionMedica.usuarioBorrado}"/>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="Ver Todos" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Agregar" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

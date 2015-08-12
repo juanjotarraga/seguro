@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{tipoBean.id}'/>
+		<f:event type="preRenderView" listener='#{tipoBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Tipo"/>
+
+	<ui:define name="header">
+		Tipo
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Tipo
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="tipoBeanTipoIdTipo" value="Id Tipo:"/>
+			<h:outputText id="tipoBeanTipoIdTipo" value="#{tipoBean.tipo.idTipo}"/>
+			<h:outputText/>
+			<h:outputLabel for="tipoBeanTipoNombre" value="Nombre:"/>
+			<h:outputText id="tipoBeanTipoNombre" value="#{tipoBean.tipo.nombre}"/>
+			<h:outputText/>
+			<h:outputLabel for="tipoBeanTipoFlagEstado" value="Flag Estado:"/>
+			<h:outputText id="tipoBeanTipoFlagEstado" value="#{tipoBean.tipo.flagEstado}"/>
+			<h:outputText/>
+			<h:outputLabel for="tipoBeanTipoFechaReg" value="Fecha Reg:"/>
+			<h:outputText id="tipoBeanTipoFechaReg" value="#{tipoBean.tipo.fechaReg}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="tipoBeanTipoUsuarioReg" value="Usuario Reg:"/>
+			<h:outputText id="tipoBeanTipoUsuarioReg" value="#{tipoBean.tipo.usuarioReg}"/>
+			<h:outputText/>
+			<h:outputLabel for="tipoBeanTipoFechaMod" value="Fecha Mod:"/>
+			<h:outputText id="tipoBeanTipoFechaMod" value="#{tipoBean.tipo.fechaMod}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="tipoBeanTipoUsuarioMod" value="Usuario Mod:"/>
+			<h:outputText id="tipoBeanTipoUsuarioMod" value="#{tipoBean.tipo.usuarioMod}"/>
+			<h:outputText/>
+			<h:outputLabel for="tipoBeanTipoFechaBorrado" value="Fecha Borrado:"/>
+			<h:outputText id="tipoBeanTipoFechaBorrado" value="#{tipoBean.tipo.fechaBorrado}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="tipoBeanTipoUsuarioBorrado" value="Usuario Borrado:"/>
+			<h:outputText id="tipoBeanTipoUsuarioBorrado" value="#{tipoBean.tipo.usuarioBorrado}"/>
+			<h:outputText/>
+			<h:outputLabel for="tipoBeanTipoTasas" value="Tasas:"/>
+			<h:dataTable id="tipoBeanTipoTasas" styleClass="data-table" value="#{forgeview:asList(tipoBean.tipo.tasas)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Tasa"/>
+					</f:facet>
+					<h:link outcome="/parametros/tasa/view">
+						<f:param name="id" value="#{_item.idTasa}"/>
+						<h:outputText id="itemIdTasa" value="#{_item.idTasa}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="tipoBeanTipoAutomotors" value="Automotors:"/>
+			<h:dataTable id="tipoBeanTipoAutomotors" styleClass="data-table" value="#{forgeview:asList(tipoBean.tipo.automotors)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Automotor"/>
+					</f:facet>
+					<h:link outcome="/procesos/automotor/view">
+						<f:param name="id" value="#{_item.idAutomotor}"/>
+						<h:outputText id="itemIdAutomotor" value="#{_item.idAutomotor}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="Ver Todos" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Agregar" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

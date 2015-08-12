@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{polizaCoberturaBean.id}'/>
+		<f:event type="preRenderView" listener='#{polizaCoberturaBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Poliza Cobertura"/>
+
+	<ui:define name="header">
+		Poliza Cobertura
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty polizaCoberturaBean.id}'>
+				Edicion de Poliza Cobertura
+			</c:when>
+			<c:otherwise>
+				Creacion de Poliza Cobertura
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="polizaCoberturaBeanPolizaCoberturaIdCobertura" value="Id Cobertura:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaCoberturaBeanPolizaCoberturaIdCobertura" required="true" value="#{polizaCoberturaBean.polizaCobertura.idCobertura}"/>
+					<h:message for="polizaCoberturaBeanPolizaCoberturaIdCobertura" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="polizaCoberturaBeanPolizaCoberturaPoliza" value="Poliza:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{polizaBean.converter}" id="polizaCoberturaBeanPolizaCoberturaPoliza" value="#{polizaCoberturaBean.polizaCobertura.poliza}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{polizaBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="polizaCoberturaBeanPolizaCoberturaPoliza" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaCoberturaBeanPolizaCoberturaNombre" value="Nombre:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaCoberturaBeanPolizaCoberturaNombre" maxLength="90" value="#{polizaCoberturaBean.polizaCobertura.nombre}"/>
+					<h:message for="polizaCoberturaBeanPolizaCoberturaNombre" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaCoberturaBeanPolizaCoberturaAcronimo" value="Acronimo:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaCoberturaBeanPolizaCoberturaAcronimo" maxLength="30" value="#{polizaCoberturaBean.polizaCobertura.acronimo}"/>
+					<h:message for="polizaCoberturaBeanPolizaCoberturaAcronimo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaCoberturaBeanPolizaCoberturaFlagEstado" value="Flag Estado:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaCoberturaBeanPolizaCoberturaFlagEstado" maxLength="2" value="#{polizaCoberturaBean.polizaCobertura.flagEstado}"/>
+					<h:message for="polizaCoberturaBeanPolizaCoberturaFlagEstado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaCoberturaBeanPolizaCoberturaFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaCoberturaBeanPolizaCoberturaFechaReg" maxLength="29" value="#{polizaCoberturaBean.polizaCobertura.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="polizaCoberturaBeanPolizaCoberturaFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaCoberturaBeanPolizaCoberturaUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaCoberturaBeanPolizaCoberturaUsuarioReg" maxLength="30" value="#{polizaCoberturaBean.polizaCobertura.usuarioReg}"/>
+					<h:message for="polizaCoberturaBeanPolizaCoberturaUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaCoberturaBeanPolizaCoberturaFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaCoberturaBeanPolizaCoberturaFechaMod" maxLength="29" value="#{polizaCoberturaBean.polizaCobertura.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="polizaCoberturaBeanPolizaCoberturaFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaCoberturaBeanPolizaCoberturaUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaCoberturaBeanPolizaCoberturaUsuarioMod" maxLength="30" value="#{polizaCoberturaBean.polizaCobertura.usuarioMod}"/>
+					<h:message for="polizaCoberturaBeanPolizaCoberturaUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaCoberturaBeanPolizaCoberturaFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaCoberturaBeanPolizaCoberturaFechaBorrado" maxLength="29" value="#{polizaCoberturaBean.polizaCobertura.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="polizaCoberturaBeanPolizaCoberturaFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaCoberturaBeanPolizaCoberturaUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaCoberturaBeanPolizaCoberturaUsuarioBorrado" maxLength="30" value="#{polizaCoberturaBean.polizaCobertura.usuarioBorrado}"/>
+					<h:message for="polizaCoberturaBeanPolizaCoberturaUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Guardar" action='#{polizaCoberturaBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty polizaCoberturaBean.id}'>
+						<h:link value="Cancelar" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{polizaCoberturaBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{polizaCoberturaBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

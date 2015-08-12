@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{automotorBean.id}'/>
+		<f:event type="preRenderView" listener='#{automotorBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Automotor"/>
+
+	<ui:define name="header">
+		Automotor
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Automotor
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="automotorBeanAutomotorIdAutomotor" value="Id Automotor:"/>
+			<h:outputText id="automotorBeanAutomotorIdAutomotor" value="#{automotorBean.automotor.idAutomotor}"/>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorModelo" value="Modelo:"/>
+			<h:link id="automotorBeanAutomotorModelo" outcome="/modelo/view" rendered="#{!empty automotorBean.automotor.modelo}" value="#{automotorBean.automotor.modelo}">
+				<f:param name="id" value="#{automotorBean.automotor.modelo.idModelo}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorTipo" value="Tipo:"/>
+			<h:link id="automotorBeanAutomotorTipo" outcome="/parametros/tipo/view" rendered="#{!empty automotorBean.automotor.tipo}" value="#{automotorBean.automotor.tipo}">
+				<f:param name="id" value="#{automotorBean.automotor.tipo.idTipo}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorAno" value="Ano:"/>
+			<h:outputText id="automotorBeanAutomotorAno" value="#{automotorBean.automotor.ano}"/>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorPlaca" value="Placa:"/>
+			<h:outputText id="automotorBeanAutomotorPlaca" value="#{automotorBean.automotor.placa}"/>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorColor" value="Color:"/>
+			<h:outputText id="automotorBeanAutomotorColor" value="#{automotorBean.automotor.color}"/>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorTraccion" value="Traccion:"/>
+			<h:outputText id="automotorBeanAutomotorTraccion" value="#{automotorBean.automotor.traccion}"/>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorChasis" value="Chasis:"/>
+			<h:outputText id="automotorBeanAutomotorChasis" value="#{automotorBean.automotor.chasis}"/>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorMotor" value="Motor:"/>
+			<h:outputText id="automotorBeanAutomotorMotor" value="#{automotorBean.automotor.motor}"/>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorCc" value="Cc:"/>
+			<h:outputText id="automotorBeanAutomotorCc" value="#{automotorBean.automotor.cc}"/>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorValorAsegurado" value="Valor Asegurado:"/>
+			<h:outputText id="automotorBeanAutomotorValorAsegurado" value="#{automotorBean.automotor.valorAsegurado}"/>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorFlagEstado" value="Flag Estado:"/>
+			<h:outputText id="automotorBeanAutomotorFlagEstado" value="#{automotorBean.automotor.flagEstado}"/>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorFechaReg" value="Fecha Reg:"/>
+			<h:outputText id="automotorBeanAutomotorFechaReg" value="#{automotorBean.automotor.fechaReg}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorUsuarioReg" value="Usuario Reg:"/>
+			<h:outputText id="automotorBeanAutomotorUsuarioReg" value="#{automotorBean.automotor.usuarioReg}"/>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorFechaMod" value="Fecha Mod:"/>
+			<h:outputText id="automotorBeanAutomotorFechaMod" value="#{automotorBean.automotor.fechaMod}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorUsuarioMod" value="Usuario Mod:"/>
+			<h:outputText id="automotorBeanAutomotorUsuarioMod" value="#{automotorBean.automotor.usuarioMod}"/>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorFechaBorrado" value="Fecha Borrado:"/>
+			<h:outputText id="automotorBeanAutomotorFechaBorrado" value="#{automotorBean.automotor.fechaBorrado}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorUsuarioBorrado" value="Usuario Borrado:"/>
+			<h:outputText id="automotorBeanAutomotorUsuarioBorrado" value="#{automotorBean.automotor.usuarioBorrado}"/>
+			<h:outputText/>
+			<h:outputLabel for="automotorBeanAutomotorPolizas" value="Polizas:"/>
+			<h:dataTable id="automotorBeanAutomotorPolizas" styleClass="data-table" value="#{forgeview:asList(automotorBean.automotor.polizas)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Poliza"/>
+					</f:facet>
+					<h:link outcome="/procesos/poliza/view">
+						<f:param name="id" value="#{_item.idPoliza}"/>
+						<h:outputText id="itemIdPoliza" value="#{_item.idPoliza}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="Ver Todos" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Agregar" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

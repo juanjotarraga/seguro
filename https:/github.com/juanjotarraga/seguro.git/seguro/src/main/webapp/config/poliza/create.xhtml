@@ -1,0 +1,504 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{polizaBean.id}'/>
+		<f:event type="preRenderView" listener='#{polizaBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Poliza"/>
+
+	<ui:define name="header">
+		Poliza
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty polizaBean.id}'>
+				Edicion de Poliza
+			</c:when>
+			<c:otherwise>
+				Creacion de Poliza
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="polizaBeanPolizaIdPoliza" value="Id Poliza:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaIdPoliza" required="true" value="#{polizaBean.poliza.idPoliza}"/>
+					<h:message for="polizaBeanPolizaIdPoliza" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="polizaBeanPolizaAutomotor" value="Automotor:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{automotorBean.converter}" id="polizaBeanPolizaAutomotor" value="#{polizaBean.poliza.automotor}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{automotorBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="polizaBeanPolizaAutomotor" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaCliente" value="Cliente:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{clienteBean.converter}" id="polizaBeanPolizaCliente" value="#{polizaBean.poliza.cliente}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{clienteBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="polizaBeanPolizaCliente" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaTasa" value="Tasa:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{tasaBean.converter}" id="polizaBeanPolizaTasa" value="#{polizaBean.poliza.tasa}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{tasaBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="polizaBeanPolizaTasa" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaNroCotizacion" value="Nro Cotizacion:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaNroCotizacion" value="#{polizaBean.poliza.nroCotizacion}"/>
+					<h:message for="polizaBeanPolizaNroCotizacion" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaCodigoBarra" value="Codigo Barra:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaCodigoBarra" maxLength="50" value="#{polizaBean.poliza.codigoBarra}"/>
+					<h:message for="polizaBeanPolizaCodigoBarra" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaInicioVigencia" value="Inicio Vigencia:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaInicioVigencia" maxLength="29" value="#{polizaBean.poliza.inicioVigencia}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="polizaBeanPolizaInicioVigencia" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaFinVigencia" value="Fin Vigencia:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaFinVigencia" maxLength="29" value="#{polizaBean.poliza.finVigencia}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="polizaBeanPolizaFinVigencia" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaFechaContrato" value="Fecha Contrato:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaFechaContrato" maxLength="29" value="#{polizaBean.poliza.fechaContrato}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="polizaBeanPolizaFechaContrato" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaContratado" value="Contratado:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaContratado" maxLength="50" value="#{polizaBean.poliza.contratado}"/>
+					<h:message for="polizaBeanPolizaContratado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaValorAsegurado" value="Valor Asegurado:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaValorAsegurado" value="#{polizaBean.poliza.valorAsegurado}"/>
+					<h:message for="polizaBeanPolizaValorAsegurado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaEstadoCotizacion" value="Estado Cotizacion:"/>
+				<h:panelGroup>
+					<h:selectOneMenu id="polizaBeanPolizaEstadoCotizacion" value="#{polizaBean.poliza.estadoCotizacion}">
+						<f:selectItem/>
+						<f:selectItem itemLabel="Yes" itemValue="true"/>
+						<f:selectItem itemLabel="No" itemValue="false"/>
+					</h:selectOneMenu>
+					<h:message for="polizaBeanPolizaEstadoCotizacion" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaPrimaContratada" value="Prima Contratada:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaPrimaContratada" value="#{polizaBean.poliza.primaContratada}"/>
+					<h:message for="polizaBeanPolizaPrimaContratada" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaNroPoliza" value="Nro Poliza:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaNroPoliza" value="#{polizaBean.poliza.nroPoliza}"/>
+					<h:message for="polizaBeanPolizaNroPoliza" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaNroContrato" value="Nro Contrato:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaNroContrato" value="#{polizaBean.poliza.nroContrato}"/>
+					<h:message for="polizaBeanPolizaNroContrato" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaOrigen" value="Origen:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaOrigen" maxLength="50" value="#{polizaBean.poliza.origen}"/>
+					<h:message for="polizaBeanPolizaOrigen" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaEstadoNuevo" value="Estado Nuevo:"/>
+				<h:panelGroup>
+					<h:selectOneMenu id="polizaBeanPolizaEstadoNuevo" value="#{polizaBean.poliza.estadoNuevo}">
+						<f:selectItem/>
+						<f:selectItem itemLabel="Yes" itemValue="true"/>
+						<f:selectItem itemLabel="No" itemValue="false"/>
+					</h:selectOneMenu>
+					<h:message for="polizaBeanPolizaEstadoNuevo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaEstadoRenovacion" value="Estado Renovacion:"/>
+				<h:panelGroup>
+					<h:selectOneMenu id="polizaBeanPolizaEstadoRenovacion" value="#{polizaBean.poliza.estadoRenovacion}">
+						<f:selectItem/>
+						<f:selectItem itemLabel="Yes" itemValue="true"/>
+						<f:selectItem itemLabel="No" itemValue="false"/>
+					</h:selectOneMenu>
+					<h:message for="polizaBeanPolizaEstadoRenovacion" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaCredito" value="Credito:"/>
+				<h:panelGroup>
+					<h:selectOneMenu id="polizaBeanPolizaCredito" value="#{polizaBean.poliza.credito}">
+						<f:selectItem/>
+						<f:selectItem itemLabel="Yes" itemValue="true"/>
+						<f:selectItem itemLabel="No" itemValue="false"/>
+					</h:selectOneMenu>
+					<h:message for="polizaBeanPolizaCredito" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaSubrogado" value="Subrogado:"/>
+				<h:panelGroup>
+					<h:selectOneMenu id="polizaBeanPolizaSubrogado" value="#{polizaBean.poliza.subrogado}">
+						<f:selectItem/>
+						<f:selectItem itemLabel="Yes" itemValue="true"/>
+						<f:selectItem itemLabel="No" itemValue="false"/>
+					</h:selectOneMenu>
+					<h:message for="polizaBeanPolizaSubrogado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaRegistrado" value="Registrado:"/>
+				<h:panelGroup>
+					<h:selectOneMenu id="polizaBeanPolizaRegistrado" value="#{polizaBean.poliza.registrado}">
+						<f:selectItem/>
+						<f:selectItem itemLabel="Yes" itemValue="true"/>
+						<f:selectItem itemLabel="No" itemValue="false"/>
+					</h:selectOneMenu>
+					<h:message for="polizaBeanPolizaRegistrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaValorSubrogacion" value="Valor Subrogacion:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaValorSubrogacion" value="#{polizaBean.poliza.valorSubrogacion}"/>
+					<h:message for="polizaBeanPolizaValorSubrogacion" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaMes" value="Mes:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaMes" value="#{polizaBean.poliza.mes}"/>
+					<h:message for="polizaBeanPolizaMes" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaDia" value="Dia:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaDia" value="#{polizaBean.poliza.dia}"/>
+					<h:message for="polizaBeanPolizaDia" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaAno" value="Ano:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaAno" value="#{polizaBean.poliza.ano}"/>
+					<h:message for="polizaBeanPolizaAno" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaGeneral" value="General:"/>
+				<h:panelGroup>
+					<h:selectOneMenu id="polizaBeanPolizaGeneral" value="#{polizaBean.poliza.general}">
+						<f:selectItem/>
+						<f:selectItem itemLabel="Yes" itemValue="true"/>
+						<f:selectItem itemLabel="No" itemValue="false"/>
+					</h:selectOneMenu>
+					<h:message for="polizaBeanPolizaGeneral" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaObservaciones" value="Observaciones:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaObservaciones" maxLength="500" value="#{polizaBean.poliza.observaciones}"/>
+					<h:message for="polizaBeanPolizaObservaciones" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaNotas" value="Notas:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaNotas" maxLength="500" value="#{polizaBean.poliza.notas}"/>
+					<h:message for="polizaBeanPolizaNotas" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaPublico" value="Publico:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaPublico" maxLength="100" value="#{polizaBean.poliza.publico}"/>
+					<h:message for="polizaBeanPolizaPublico" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaCodigoVehiculo" value="Codigo Vehiculo:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaCodigoVehiculo" maxLength="50" value="#{polizaBean.poliza.codigoVehiculo}"/>
+					<h:message for="polizaBeanPolizaCodigoVehiculo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaTipoPago" value="Tipo Pago:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaTipoPago" maxLength="50" value="#{polizaBean.poliza.tipoPago}"/>
+					<h:message for="polizaBeanPolizaTipoPago" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaFlagEstado" value="Flag Estado:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaFlagEstado" maxLength="20" value="#{polizaBean.poliza.flagEstado}"/>
+					<h:message for="polizaBeanPolizaFlagEstado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaFechaReg" maxLength="29" value="#{polizaBean.poliza.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="polizaBeanPolizaFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaUsuarioReg" maxLength="30" value="#{polizaBean.poliza.usuarioReg}"/>
+					<h:message for="polizaBeanPolizaUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaFechaMod" maxLength="29" value="#{polizaBean.poliza.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="polizaBeanPolizaFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaUsuarioMod" maxLength="30" value="#{polizaBean.poliza.usuarioMod}"/>
+					<h:message for="polizaBeanPolizaUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaFechaBorrado" maxLength="29" value="#{polizaBean.poliza.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="polizaBeanPolizaFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="polizaBeanPolizaUsuarioBorrado" maxLength="30" value="#{polizaBean.poliza.usuarioBorrado}"/>
+					<h:message for="polizaBeanPolizaUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaPlanPagos" value="Plan Pagos:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{polizaBean.poliza.planPagos}"/>
+					<h:dataTable id="polizaBeanPolizaPlanPagos" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Plan Pago"/>
+							</f:facet>
+							<h:link outcome="/planPago/view">
+								<f:param name="id" value="#{_item.idPlanPago}"/>
+								<h:outputText id="itemIdPlanPago" value="#{_item.idPlanPago}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="planPagoBeanAddIdPlanPago" value="#{planPagoBean.add.idPlanPago}"/>
+								<h:message for="planPagoBeanAddIdPlanPago" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(planPagoBean.added)}" id="polizaBeanPolizaPlanPagosAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{planPagoBean.add.poliza}" value="#{polizaBean.poliza}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaPolizaCoberturas" value="Poliza Coberturas:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{polizaBean.poliza.polizaCoberturas}"/>
+					<h:dataTable id="polizaBeanPolizaPolizaCoberturas" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Cobertura"/>
+							</f:facet>
+							<h:link outcome="/polizaCobertura/view">
+								<f:param name="id" value="#{_item.idCobertura}"/>
+								<h:outputText id="itemIdCobertura" value="#{_item.idCobertura}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="polizaCoberturaBeanAddIdCobertura" value="#{polizaCoberturaBean.add.idCobertura}"/>
+								<h:message for="polizaCoberturaBeanAddIdCobertura" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(polizaCoberturaBean.added)}" id="polizaBeanPolizaPolizaCoberturasAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{polizaCoberturaBean.add.poliza}" value="#{polizaBean.poliza}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaPrimas" value="Primas:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{polizaBean.poliza.primas}"/>
+					<h:dataTable id="polizaBeanPolizaPrimas" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Prima"/>
+							</f:facet>
+							<h:link outcome="/procesos/prima/view">
+								<f:param name="id" value="#{_item.idPrima}"/>
+								<h:outputText id="itemIdPrima" value="#{_item.idPrima}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="primaBeanAddIdPrima" value="#{primaBean.add.idPrima}"/>
+								<h:message for="primaBeanAddIdPrima" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(primaBean.added)}" id="polizaBeanPolizaPrimasAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{primaBean.add.poliza}" value="#{polizaBean.poliza}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaPolizaDocumentos" value="Poliza Documentos:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{polizaBean.poliza.polizaDocumentos}"/>
+					<h:dataTable id="polizaBeanPolizaPolizaDocumentos" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Poliza Documento"/>
+							</f:facet>
+							<h:link outcome="/polizaDocumento/view">
+								<f:param name="id" value="#{_item.idPolizaDocumento}"/>
+								<h:outputText id="itemIdPolizaDocumento" value="#{_item.idPolizaDocumento}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="polizaDocumentoBeanAddIdPolizaDocumento" value="#{polizaDocumentoBean.add.idPolizaDocumento}"/>
+								<h:message for="polizaDocumentoBeanAddIdPolizaDocumento" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(polizaDocumentoBean.added)}" id="polizaBeanPolizaPolizaDocumentosAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{polizaDocumentoBean.add.poliza}" value="#{polizaBean.poliza}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaSiniestros" value="Siniestros:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{polizaBean.poliza.siniestros}"/>
+					<h:dataTable id="polizaBeanPolizaSiniestros" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Siniestro"/>
+							</f:facet>
+							<h:link outcome="/siniestro/view">
+								<f:param name="id" value="#{_item.idSiniestro}"/>
+								<h:outputText id="itemIdSiniestro" value="#{_item.idSiniestro}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="siniestroBeanAddIdSiniestro" value="#{siniestroBean.add.idSiniestro}"/>
+								<h:message for="siniestroBeanAddIdSiniestro" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(siniestroBean.added)}" id="polizaBeanPolizaSiniestrosAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{siniestroBean.add.poliza}" value="#{polizaBean.poliza}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="polizaBeanPolizaPolizaFotos" value="Poliza Fotos:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{polizaBean.poliza.polizaFotos}"/>
+					<h:dataTable id="polizaBeanPolizaPolizaFotos" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Poliza Foto"/>
+							</f:facet>
+							<h:link outcome="/polizaFoto/view">
+								<f:param name="id" value="#{_item.idPolizaFoto}"/>
+								<h:outputText id="itemIdPolizaFoto" value="#{_item.idPolizaFoto}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="polizaFotoBeanAddIdPolizaFoto" value="#{polizaFotoBean.add.idPolizaFoto}"/>
+								<h:message for="polizaFotoBeanAddIdPolizaFoto" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(polizaFotoBean.added)}" id="polizaBeanPolizaPolizaFotosAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{polizaFotoBean.add.poliza}" value="#{polizaBean.poliza}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Guardar" action='#{polizaBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty polizaBean.id}'>
+						<h:link value="Cancelar" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{polizaBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{polizaBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

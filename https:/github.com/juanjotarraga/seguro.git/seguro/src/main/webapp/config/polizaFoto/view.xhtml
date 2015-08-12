@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{polizaFotoBean.id}'/>
+		<f:event type="preRenderView" listener='#{polizaFotoBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Poliza Foto"/>
+
+	<ui:define name="header">
+		Poliza Foto
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Poliza Foto
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="polizaFotoBeanPolizaFotoIdPolizaFoto" value="Id Poliza Foto:"/>
+			<h:outputText id="polizaFotoBeanPolizaFotoIdPolizaFoto" value="#{polizaFotoBean.polizaFoto.idPolizaFoto}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaFotoBeanPolizaFotoPoliza" value="Poliza:"/>
+			<h:link id="polizaFotoBeanPolizaFotoPoliza" outcome="/poliza/view" rendered="#{!empty polizaFotoBean.polizaFoto.poliza}" value="#{polizaFotoBean.polizaFoto.poliza}">
+				<f:param name="id" value="#{polizaFotoBean.polizaFoto.poliza.idPoliza}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="polizaFotoBeanPolizaFotoFotoFrontal" value="Foto Frontal:"/>
+			<h:outputText id="polizaFotoBeanPolizaFotoFotoFrontal" value="#{polizaFotoBean.polizaFoto.fotoFrontal}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaFotoBeanPolizaFotoFotoLateralDerecho" value="Foto Lateral Derecho:"/>
+			<h:outputText id="polizaFotoBeanPolizaFotoFotoLateralDerecho" value="#{polizaFotoBean.polizaFoto.fotoLateralDerecho}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaFotoBeanPolizaFotoFotoLateralIzquierdo" value="Foto Lateral Izquierdo:"/>
+			<h:outputText id="polizaFotoBeanPolizaFotoFotoLateralIzquierdo" value="#{polizaFotoBean.polizaFoto.fotoLateralIzquierdo}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaFotoBeanPolizaFotoFotoTrasera" value="Foto Trasera:"/>
+			<h:outputText id="polizaFotoBeanPolizaFotoFotoTrasera" value="#{polizaFotoBean.polizaFoto.fotoTrasera}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaFotoBeanPolizaFotoFotoAccesorio" value="Foto Accesorio:"/>
+			<h:outputText id="polizaFotoBeanPolizaFotoFotoAccesorio" value="#{polizaFotoBean.polizaFoto.fotoAccesorio}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaFotoBeanPolizaFotoFotoOtros" value="Foto Otros:"/>
+			<h:outputText id="polizaFotoBeanPolizaFotoFotoOtros" value="#{polizaFotoBean.polizaFoto.fotoOtros}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaFotoBeanPolizaFotoFechaReg" value="Fecha Reg:"/>
+			<h:outputText id="polizaFotoBeanPolizaFotoFechaReg" value="#{polizaFotoBean.polizaFoto.fechaReg}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="polizaFotoBeanPolizaFotoUsuarioReg" value="Usuario Reg:"/>
+			<h:outputText id="polizaFotoBeanPolizaFotoUsuarioReg" value="#{polizaFotoBean.polizaFoto.usuarioReg}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaFotoBeanPolizaFotoFechaMod" value="Fecha Mod:"/>
+			<h:outputText id="polizaFotoBeanPolizaFotoFechaMod" value="#{polizaFotoBean.polizaFoto.fechaMod}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="polizaFotoBeanPolizaFotoUsuarioMod" value="Usuario Mod:"/>
+			<h:outputText id="polizaFotoBeanPolizaFotoUsuarioMod" value="#{polizaFotoBean.polizaFoto.usuarioMod}"/>
+			<h:outputText/>
+			<h:outputLabel for="polizaFotoBeanPolizaFotoFechaBorrado" value="Fecha Borrado:"/>
+			<h:outputText id="polizaFotoBeanPolizaFotoFechaBorrado" value="#{polizaFotoBean.polizaFoto.fechaBorrado}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="polizaFotoBeanPolizaFotoUsuarioBorrado" value="Usuario Borrado:"/>
+			<h:outputText id="polizaFotoBeanPolizaFotoUsuarioBorrado" value="#{polizaFotoBean.polizaFoto.usuarioBorrado}"/>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="Ver Todos" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Agregar" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>
