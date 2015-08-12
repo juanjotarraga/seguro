@@ -2,6 +2,7 @@ package org.seguro.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.inject.Inject;
@@ -23,9 +25,13 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpServletRequest;
 
 import org.seguro.model.Cliente;
+import org.seguro.model.Modelo;
+
 import java.util.Iterator;
+
 import org.seguro.model.Poliza;
 
 /**
@@ -45,6 +51,9 @@ public class ClienteBean implements Serializable
 {
 
    private static final long serialVersionUID = 1L;
+   FacesContext context = FacesContext.getCurrentInstance();
+   ExternalContext externalContext = context.getExternalContext();
+   HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
    /*
     * Support creating and retrieving Cliente entities
@@ -124,18 +133,28 @@ public class ClienteBean implements Serializable
 
    public String update()
    {
+	   System.out.println("Agarrando el contexto.");
+       String nombre = request.getUserPrincipal().getName();
       this.conversation.end();
 
       try
       {
          if (this.id == null)
          {
-            this.entityManager.persist(this.cliente);
+            
+        	 this.cliente.setFechaReg(new Date());
+             this.cliente.setUsuarioReg(nombre);
+         	this.cliente.setFlagEstado("AC");
+             this.entityManager.persist(this.cliente);
             return "search?faces-redirect=true";
          }
          else
          {
-            this.entityManager.merge(this.cliente);
+            
+        	 this.cliente.setFechaMod(new Date());
+        	 this.cliente.setUsuarioMod(nombre);
+        	 this.cliente.setFlagEstado("AC");
+             this.entityManager.persist(this.cliente);
             return "view?faces-redirect=true&id=" + this.cliente.getIdCliente();
          }
       }
@@ -152,6 +171,7 @@ public class ClienteBean implements Serializable
 
       try
       {
+    	  /*
          Cliente deletableEntity = findById(getId());
          Iterator<Poliza> iterPolizas = deletableEntity.getPolizas().iterator();
          for (; iterPolizas.hasNext();)
@@ -162,7 +182,14 @@ public class ClienteBean implements Serializable
             this.entityManager.merge(nextInPolizas);
          }
          this.entityManager.remove(deletableEntity);
-         this.entityManager.flush();
+         this.entityManager.flush();*/
+    	  
+    	  String nombre = request.getUserPrincipal().getName();
+    	  Cliente deletableEntity = findById(getId());
+    	  deletableEntity.setFlagEstado("IN");
+    	  deletableEntity.setUsuarioBorrado(nombre);
+    	  deletableEntity.setFechaBorrado(new Date());
+    	  this.entityManager.flush();
          return "search?faces-redirect=true";
       }
       catch (Exception e)

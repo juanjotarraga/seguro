@@ -2,6 +2,7 @@ package org.seguro.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.inject.Inject;
@@ -23,9 +25,12 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpServletRequest;
 
 import org.seguro.model.Tipo;
+
 import java.util.Iterator;
+
 import org.seguro.model.Automotor;
 import org.seguro.model.Tasa;
 
@@ -46,6 +51,9 @@ public class TipoBean implements Serializable
 {
 
    private static final long serialVersionUID = 1L;
+   FacesContext context = FacesContext.getCurrentInstance();
+   ExternalContext externalContext = context.getExternalContext();
+   HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
    /*
     * Support creating and retrieving Tipo entities
@@ -125,17 +133,25 @@ public class TipoBean implements Serializable
 
    public String update()
    {
+	   System.out.println("Agarrando el contexto.");
+       String nombre = request.getUserPrincipal().getName();
       this.conversation.end();
 
       try
       {
          if (this.id == null)
          {
+        	 this.tipo.setFechaReg(new Date());
+             this.tipo.setUsuarioReg(nombre);
+         	this.tipo.setFlagEstado("AC");
             this.entityManager.persist(this.tipo);
             return "search?faces-redirect=true";
          }
          else
          {
+        	 this.tipo.setFechaMod(new Date());
+        	 this.tipo.setUsuarioMod(nombre);
+        	 this.tipo.setFlagEstado("AC");
             this.entityManager.merge(this.tipo);
             return "view?faces-redirect=true&id=" + this.tipo.getIdTipo();
          }
@@ -153,6 +169,7 @@ public class TipoBean implements Serializable
 
       try
       {
+    	  /*
          Tipo deletableEntity = findById(getId());
          Iterator<Tasa> iterTasas = deletableEntity.getTasas().iterator();
          for (; iterTasas.hasNext();)
@@ -170,7 +187,12 @@ public class TipoBean implements Serializable
             iterAutomotors.remove();
             this.entityManager.merge(nextInAutomotors);
          }
-         this.entityManager.remove(deletableEntity);
+         this.entityManager.remove(deletableEntity); */
+    	  String nombre = request.getUserPrincipal().getName();
+    	  Tipo deletableEntity = findById(getId());
+    	  deletableEntity.setFlagEstado("IN");
+    	  deletableEntity.setUsuarioBorrado(nombre);
+    	  deletableEntity.setFechaBorrado(new Date());
          this.entityManager.flush();
          return "search?faces-redirect=true";
       }
