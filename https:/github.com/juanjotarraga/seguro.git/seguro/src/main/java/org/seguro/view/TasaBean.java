@@ -2,6 +2,7 @@ package org.seguro.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.inject.Inject;
@@ -23,9 +25,12 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpServletRequest;
 
 import org.seguro.model.Tasa;
+
 import java.util.Iterator;
+
 import org.seguro.model.Compania;
 import org.seguro.model.DetalleTasaCondicion;
 import org.seguro.model.Poliza;
@@ -48,6 +53,9 @@ public class TasaBean implements Serializable
 {
 
    private static final long serialVersionUID = 1L;
+   FacesContext context = FacesContext.getCurrentInstance();
+   ExternalContext externalContext = context.getExternalContext();
+   HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
    /*
     * Support creating and retrieving Tasa entities
@@ -127,17 +135,25 @@ public class TasaBean implements Serializable
 
    public String update()
    {
+	   System.out.println("Agarrando el contexto.");
+       String nombre = request.getUserPrincipal().getName();
       this.conversation.end();
 
       try
       {
          if (this.id == null)
          {
+        	 this.tasa.setFechaReg(new Date());
+             this.tasa.setUsuarioReg(nombre);
+         	//this.tasa.setFlagEstado("AC");
             this.entityManager.persist(this.tasa);
             return "search?faces-redirect=true";
          }
          else
          {
+        	 this.tasa.setFechaMod(new Date());
+        	 this.tasa.setUsuarioMod(nombre);
+        	 //this.tasa.setFlagEstado("AC");
             this.entityManager.merge(this.tasa);
             return "view?faces-redirect=true&id=" + this.tasa.getIdTasa();
          }
@@ -154,7 +170,7 @@ public class TasaBean implements Serializable
       this.conversation.end();
 
       try
-      {
+      { /*
          Tasa deletableEntity = findById(getId());
          Compania compania = deletableEntity.getCompania();
          compania.getTasas().remove(deletableEntity);
@@ -180,7 +196,11 @@ public class TasaBean implements Serializable
             iterDetalleTasaCondicions.remove();
             this.entityManager.merge(nextInDetalleTasaCondicions);
          }
-         this.entityManager.remove(deletableEntity);
+         this.entityManager.remove(deletableEntity);*/
+    	  String nombre = request.getUserPrincipal().getName();
+    	  Tasa deletableEntity = findById(getId());    	 
+    	  deletableEntity.setUsuarioBorrado(nombre);
+    	  deletableEntity.setFechaBorrado(new Date());
          this.entityManager.flush();
          return "search?faces-redirect=true";
       }
