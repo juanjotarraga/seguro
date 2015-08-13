@@ -3,9 +3,12 @@ package org.seguro.model;
 // Generated 11-ago-2015 18:28:13 by Hibernate Tools 4.3.1
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -58,7 +61,8 @@ public class UsuarioRol implements java.io.Serializable
    }
 
    @Id
-   @Column(name = "correlativo", unique = true, nullable = false)
+   @GeneratedValue(strategy=GenerationType.IDENTITY)
+   @Column(name = "correlativo", unique = true, nullable = false, insertable=false)
    public int getCorrelativo()
    {
       return this.correlativo;

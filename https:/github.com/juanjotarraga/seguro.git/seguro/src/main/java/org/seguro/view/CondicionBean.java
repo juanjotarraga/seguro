@@ -2,6 +2,7 @@ package org.seguro.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.inject.Inject;
@@ -23,9 +25,13 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpServletRequest;
 
 import org.seguro.model.Condicion;
+
 import java.util.Iterator;
+
+import org.seguro.model.Aseguradora;
 import org.seguro.model.CoberturaSiniestro;
 import org.seguro.model.DetalleTasaCondicion;
 
@@ -46,6 +52,9 @@ public class CondicionBean implements Serializable
 {
 
    private static final long serialVersionUID = 1L;
+   FacesContext context = FacesContext.getCurrentInstance();
+   ExternalContext externalContext = context.getExternalContext();
+   HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
    /*
     * Support creating and retrieving Condicion entities
@@ -125,17 +134,25 @@ public class CondicionBean implements Serializable
 
    public String update()
    {
+	   System.out.println("Agarrando el contexto.");
+       String nombre = request.getUserPrincipal().getName();
       this.conversation.end();
 
       try
       {
          if (this.id == null)
          {
+        	 this.condicion.setFechaReg(new Date());
+             this.condicion.setUsuarioReg(nombre);
+          	this.condicion.setFlagEstado("AC");
             this.entityManager.persist(this.condicion);
             return "search?faces-redirect=true";
          }
          else
          {
+        	 this.condicion.setFechaMod(new Date());
+         	this.condicion.setUsuarioMod(nombre);
+         	this.condicion.setFlagEstado("AC");
             this.entityManager.merge(this.condicion);
             return "view?faces-redirect=true&id=" + this.condicion.getIdCondicion();
          }
@@ -153,6 +170,7 @@ public class CondicionBean implements Serializable
 
       try
       {
+    	  /*
          Condicion deletableEntity = findById(getId());
          Iterator<DetalleTasaCondicion> iterDetalleTasaCondicions = deletableEntity.getDetalleTasaCondicions().iterator();
          for (; iterDetalleTasaCondicions.hasNext();)
@@ -170,7 +188,13 @@ public class CondicionBean implements Serializable
             iterCoberturaSiniestros.remove();
             this.entityManager.merge(nextInCoberturaSiniestros);
          }
-         this.entityManager.remove(deletableEntity);
+         this.entityManager.remove(deletableEntity); */
+    	  
+    	  String nombre = request.getUserPrincipal().getName();
+    	  Condicion deletableEntity = findById(getId());    	 
+    	  deletableEntity.setUsuarioBorrado(nombre);
+    	  deletableEntity.setFlagEstado("IN");
+    	  deletableEntity.setFechaBorrado(new Date());
          this.entityManager.flush();
          return "search?faces-redirect=true";
       }

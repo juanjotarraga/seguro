@@ -37,94 +37,14 @@
 			<h:messages globalOnly="true" styleClass="error"/>
 
 			<h:panelGrid columnClasses="label,component,required" columns="3">
-				<h:outputLabel for="marcaBeanMarcaIdMarca" value="Id Marca:"/>
-				<h:panelGroup>
-					<h:inputText id="marcaBeanMarcaIdMarca" required="true" value="#{marcaBean.marca.idMarca}"/>
-					<h:message for="marcaBeanMarcaIdMarca" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText value="*"/>
+				
 				<h:outputLabel for="marcaBeanMarcaNombre" value="Nombre:"/>
 				<h:panelGroup>
 					<h:inputText id="marcaBeanMarcaNombre" maxLength="50" value="#{marcaBean.marca.nombre}"/>
 					<h:message for="marcaBeanMarcaNombre" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText/>
-				<h:outputLabel for="marcaBeanMarcaFlagEstado" value="Flag Estado:"/>
-				<h:panelGroup>
-					<h:inputText id="marcaBeanMarcaFlagEstado" maxLength="2" value="#{marcaBean.marca.flagEstado}"/>
-					<h:message for="marcaBeanMarcaFlagEstado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="marcaBeanMarcaFechaReg" value="Fecha Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="marcaBeanMarcaFechaReg" maxLength="29" value="#{marcaBean.marca.fechaReg}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="marcaBeanMarcaFechaReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="marcaBeanMarcaUsuarioReg" value="Usuario Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="marcaBeanMarcaUsuarioReg" maxLength="30" value="#{marcaBean.marca.usuarioReg}"/>
-					<h:message for="marcaBeanMarcaUsuarioReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="marcaBeanMarcaFechaMod" value="Fecha Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="marcaBeanMarcaFechaMod" maxLength="29" value="#{marcaBean.marca.fechaMod}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="marcaBeanMarcaFechaMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="marcaBeanMarcaUsuarioMod" value="Usuario Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="marcaBeanMarcaUsuarioMod" maxLength="30" value="#{marcaBean.marca.usuarioMod}"/>
-					<h:message for="marcaBeanMarcaUsuarioMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="marcaBeanMarcaFechaBorrado" value="Fecha Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="marcaBeanMarcaFechaBorrado" maxLength="29" value="#{marcaBean.marca.fechaBorrado}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="marcaBeanMarcaFechaBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="marcaBeanMarcaUsuarioBorrado" value="Usuario Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="marcaBeanMarcaUsuarioBorrado" maxLength="30" value="#{marcaBean.marca.usuarioBorrado}"/>
-					<h:message for="marcaBeanMarcaUsuarioBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="marcaBeanMarcaModelos" value="Modelos:"/>
-				<h:panelGroup>
-					<ui:param name="_collection" value="#{marcaBean.marca.modelos}"/>
-					<h:dataTable id="marcaBeanMarcaModelos" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Id Modelo"/>
-							</f:facet>
-							<h:link outcome="/parametros/modelo/view">
-								<f:param name="id" value="#{_item.idModelo}"/>
-								<h:outputText id="itemIdModelo" value="#{_item.idModelo}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="modeloBeanAddIdModelo" value="#{modeloBean.add.idModelo}"/>
-								<h:message for="modeloBeanAddIdModelo" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column footerClass="remove-column" headerClass="remove-column">
-							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
-							<f:facet name="footer">
-								<h:commandLink action="#{_collection.add(modeloBean.added)}" id="marcaBeanMarcaModelosAdd" styleClass="add-button">
-									<f:setPropertyActionListener target="#{modeloBean.add.marca}" value="#{marcaBean.marca}"/>
-								</h:commandLink>
-							</f:facet>
-						</h:column>
-					</h:dataTable>
-				</h:panelGroup>
-				<h:outputText/>
+				
 			</h:panelGrid>
 
 			<div class="buttons">

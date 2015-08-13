@@ -19,7 +19,7 @@
 	</ui:define>
 
 	<ui:define name="subheader">
-		View existing Tasa
+
 	</ui:define>
 
 	<ui:define name="footer"/>
@@ -30,12 +30,12 @@
 			<h:outputText id="tasaBeanTasaIdTasa" value="#{tasaBean.tasa.idTasa}"/>
 			<h:outputText/>
 			<h:outputLabel for="tasaBeanTasaCompania" value="Compania:"/>
-			<h:link id="tasaBeanTasaCompania" outcome="/parametros/compania/view" rendered="#{!empty tasaBean.tasa.compania}" value="#{tasaBean.tasa.compania}">
+			<h:link id="tasaBeanTasaCompania" outcome="/parametros/compania/view" rendered="#{!empty tasaBean.tasa.compania}" value="#{tasaBean.tasa.compania.nombre}">
 				<f:param name="id" value="#{tasaBean.tasa.compania.idCompania}"/>
 			</h:link>
 			<h:outputText/>
 			<h:outputLabel for="tasaBeanTasaTipo" value="Tipo:"/>
-			<h:link id="tasaBeanTasaTipo" outcome="/parametros/tipo/view" rendered="#{!empty tasaBean.tasa.tipo}" value="#{tasaBean.tasa.tipo}">
+			<h:link id="tasaBeanTasaTipo" outcome="/parametros/tipo/view" rendered="#{!empty tasaBean.tasa.tipo}" value="#{tasaBean.tasa.tipo.nombre}">
 				<f:param name="id" value="#{tasaBean.tasa.tipo.idTipo}"/>
 			</h:link>
 			<h:outputText/>
@@ -78,28 +78,16 @@
 			<h:outputLabel for="tasaBeanTasaUsuarioBorrado" value="Usuario Borrado:"/>
 			<h:outputText id="tasaBeanTasaUsuarioBorrado" value="#{tasaBean.tasa.usuarioBorrado}"/>
 			<h:outputText/>
-			<h:outputLabel for="tasaBeanTasaPolizas" value="Polizas:"/>
-			<h:dataTable id="tasaBeanTasaPolizas" styleClass="data-table" value="#{forgeview:asList(tasaBean.tasa.polizas)}" var="_item">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Id Poliza"/>
-					</f:facet>
-					<h:link outcome="/procesos/poliza/view">
-						<f:param name="id" value="#{_item.idPoliza}"/>
-						<h:outputText id="itemIdPoliza" value="#{_item.idPoliza}"/>
-					</h:link>
-				</h:column>
-			</h:dataTable>
-			<h:outputText/>
-			<h:outputLabel for="tasaBeanTasaDetalleTasaCondicions" value="Detalle Tasa Condicions:"/>
+			
+			<h:outputLabel for="tasaBeanTasaDetalleTasaCondicions" value="Condiciones :"/>
 			<h:dataTable id="tasaBeanTasaDetalleTasaCondicions" styleClass="data-table" value="#{forgeview:asList(tasaBean.tasa.detalleTasaCondicions)}" var="_item">
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="Id Detalle Tasa Condicion"/>
+						<h:outputText value="Condiciones"/>
 					</f:facet>
 					<h:link outcome="/parametros/detalleTasaCondicion/view">
 						<f:param name="id" value="#{_item.idDetalleTasaCondicion}"/>
-						<h:outputText id="itemIdDetalleTasaCondicion" value="#{_item.idDetalleTasaCondicion}"/>
+						<h:outputText id="itemIdDetalleTasaCondicion" value="#{_item.condicion.nombre}"/>
 					</h:link>
 				</h:column>
 			</h:dataTable>

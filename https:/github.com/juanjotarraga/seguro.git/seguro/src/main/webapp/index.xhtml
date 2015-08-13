@@ -3,7 +3,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/resources/scaffold/pageTemplate.xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 	<ui:param name="pageTitle" value="Aseguradora Simplex" />
 
@@ -30,8 +31,13 @@
 		</h2>
 		
 		hola :
-		<h:outputText value="#{request.userPrincipal.name}"/> <!--<h:outputText value="#{request.isUserInRole('ADMIN')}"/> -->
+		<h:outputText value="#{request.userPrincipal.name}"/>
+		
+		
+		 <!--<h:outputText value="#{request.isUserInRole('ADMIN')}"/> -->
 			<span/>
+			
+			
 			
 			<br />
 			<!--  

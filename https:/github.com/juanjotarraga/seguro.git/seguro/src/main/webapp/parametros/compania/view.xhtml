@@ -15,18 +15,18 @@
 	<ui:param name="pageTitle" value="View Compania"/>
 
 	<ui:define name="header">
-		Compania
+		Compañía
 	</ui:define>
 
 	<ui:define name="subheader">
-		View existing Compania
+
 	</ui:define>
 
 	<ui:define name="footer"/>
 
 	<ui:define name="main">
 		<h:panelGrid columnClasses="label,component,required" columns="3">
-			<h:outputLabel for="companiaBeanCompaniaIdCompania" value="Id Compania:"/>
+			<h:outputLabel for="companiaBeanCompaniaIdCompania" value="Id Compañía:"/>
 			<h:outputText id="companiaBeanCompaniaIdCompania" value="#{companiaBean.compania.idCompania}"/>
 			<h:outputText/>
 			<h:outputLabel for="companiaBeanCompaniaNombre" value="Nombre:"/>
@@ -68,19 +68,7 @@
 			<h:outputLabel for="companiaBeanCompaniaUsuarioBorrado" value="Usuario Borrado:"/>
 			<h:outputText id="companiaBeanCompaniaUsuarioBorrado" value="#{companiaBean.compania.usuarioBorrado}"/>
 			<h:outputText/>
-			<h:outputLabel for="companiaBeanCompaniaPrimas" value="Primas:"/>
-			<h:dataTable id="companiaBeanCompaniaPrimas" styleClass="data-table" value="#{forgeview:asList(companiaBean.compania.primas)}" var="_item">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Id Prima"/>
-					</f:facet>
-					<h:link outcome="/procesos/prima/view">
-						<f:param name="id" value="#{_item.idPrima}"/>
-						<h:outputText id="itemIdPrima" value="#{_item.idPrima}"/>
-					</h:link>
-				</h:column>
-			</h:dataTable>
-			<h:outputText/>
+			
 			<h:outputLabel for="companiaBeanCompaniaTasas" value="Tasas:"/>
 			<h:dataTable id="companiaBeanCompaniaTasas" styleClass="data-table" value="#{forgeview:asList(companiaBean.compania.tasas)}" var="_item">
 				<h:column>
@@ -90,6 +78,42 @@
 					<h:link outcome="/parametros/tasa/view">
 						<f:param name="id" value="#{_item.idTasa}"/>
 						<h:outputText id="itemIdTasa" value="#{_item.idTasa}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Mayor que"/>
+					</f:facet>
+					<h:link outcome="/parametros/tasa/view">
+						<f:param name="id" value="#{_item.idTasa}"/>
+						<h:outputText id="itemMayor" value="#{_item.mayorQue}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Mernor que"/>
+					</f:facet>
+					<h:link outcome="/parametros/tasa/view">
+						<f:param name="id" value="#{_item.idTasa}"/>
+						<h:outputText id="itemMenor" value="#{_item.menorQue}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Prima contado"/>
+					</f:facet>
+					<h:link outcome="/parametros/tasa/view">
+						<f:param name="id" value="#{_item.idTasa}"/>
+						<h:outputText id="itemPcontado" value="#{_item.primaContado}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Prima credito"/>
+					</f:facet>
+					<h:link outcome="/parametros/tasa/view">
+						<f:param name="id" value="#{_item.idTasa}"/>
+						<h:outputText id="itemPcredito" value="#{_item.primaCredito}"/>
 					</h:link>
 				</h:column>
 			</h:dataTable>

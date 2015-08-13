@@ -19,7 +19,7 @@
 	</ui:define>
 
 	<ui:define name="subheader">
-		View existing Modelo
+
 	</ui:define>
 
 	<ui:define name="footer"/>
@@ -30,8 +30,8 @@
 			<h:outputText id="modeloBeanModeloIdModelo" value="#{modeloBean.modelo.idModelo}"/>
 			<h:outputText/>
 			<h:outputLabel for="modeloBeanModeloMarca" value="Marca:"/>
-			<h:link id="modeloBeanModeloMarca" outcome="/marca/view" rendered="#{!empty modeloBean.modelo.marca}" value="#{modeloBean.modelo.marca}">
-				<f:param name="id" value="#{modeloBean.modelo.marca.idMarca}"/>
+			<h:link id="modeloBeanModeloMarca" outcome="/parametros/marca/view" rendered="#{!empty modeloBean.modelo.marca}" value="#{modeloBean.modelo.marca.nombre}">
+				<f:param name="id" value="#{modeloBean.modelo.marca}"/>
 			</h:link>
 			<h:outputText/>
 			<h:outputLabel for="modeloBeanModeloNombre" value="Nombre:"/>

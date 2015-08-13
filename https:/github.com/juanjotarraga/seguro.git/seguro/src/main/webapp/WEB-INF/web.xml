@@ -16,7 +16,7 @@
   <display-name>Security Constraint</display-name>
     <web-resource-collection>
     <web-resource-name>Protected Area</web-resource-name>
-      <url-pattern>/faces/aseguradora/*</url-pattern>
+      <url-pattern>/faces/admin/*</url-pattern>
       <url-pattern>/logoutServlet</url-pattern>
       <url-pattern>/faces/index.xhtml</url-pattern>
       <http-method>DELETE</http-method>
@@ -39,7 +39,7 @@
     <realm-name>validarUsuarioDB</realm-name>
     <form-login-config>
     <form-login-page>/faces/login.xhtml</form-login-page>
-      <form-error-page>/error.html</form-error-page>
+      <form-error-page>/faces/login.xhtml</form-error-page>
     </form-login-config>
   </login-config>
   <security-role>

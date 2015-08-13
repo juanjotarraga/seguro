@@ -18,7 +18,7 @@
 	</ui:define>
 
 	<ui:define name="subheader">
-		Search Tipo entities
+	
 	</ui:define>
 
 	<ui:define name="footer"/>
@@ -41,24 +41,6 @@
 							<h:message for="tipoBeanExampleNombre" styleClass="error"/>
 						</h:panelGroup>
 						<h:outputText/>
-						<h:outputLabel for="tipoBeanExampleFlagEstado" value="Flag Estado:"/>
-						<h:panelGroup>
-							<h:inputText id="tipoBeanExampleFlagEstado" maxLength="2" value="#{tipoBean.example.flagEstado}"/>
-							<h:message for="tipoBeanExampleFlagEstado" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="tipoBeanExampleUsuarioReg" value="Usuario Reg:"/>
-						<h:panelGroup>
-							<h:inputText id="tipoBeanExampleUsuarioReg" maxLength="30" value="#{tipoBean.example.usuarioReg}"/>
-							<h:message for="tipoBeanExampleUsuarioReg" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="tipoBeanExampleUsuarioMod" value="Usuario Mod:"/>
-						<h:panelGroup>
-							<h:inputText id="tipoBeanExampleUsuarioMod" maxLength="30" value="#{tipoBean.example.usuarioMod}"/>
-							<h:message for="tipoBeanExampleUsuarioMod" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
 					</h:panelGrid>
 					<h:panelGroup styleClass="buttons">
 						<h:commandLink value="Buscar" action='#{tipoBean.search}' styleClass="btn btn-primary"/>
@@ -75,6 +57,15 @@
 					<h:link outcome="/parametros/tipo/view">
 						<f:param name="id" value="#{_item.idTipo}"/>
 						<h:outputText id="itemIdTipo" value="#{_item.idTipo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nombre"/>
+					</f:facet>
+					<h:link outcome="/parametros/tipo/view">
+						<f:param name="id" value="#{_item.idTipo}"/>
+						<h:outputText id="itemNombre" value="#{_item.nombre}"/>
 					</h:link>
 				</h:column>
 			</h:dataTable>

@@ -2,6 +2,7 @@ package org.seguro.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.inject.Inject;
@@ -23,9 +25,13 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpServletRequest;
 
 import org.seguro.model.Aseguradora;
+import org.seguro.model.Tasa;
+
 import java.util.Iterator;
+
 import org.seguro.model.Usuario;
 
 /**
@@ -45,6 +51,9 @@ public class AseguradoraBean implements Serializable
 {
 
    private static final long serialVersionUID = 1L;
+   FacesContext context = FacesContext.getCurrentInstance();
+   ExternalContext externalContext = context.getExternalContext();
+   HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
    /*
     * Support creating and retrieving Aseguradora entities
@@ -124,17 +133,25 @@ public class AseguradoraBean implements Serializable
 
    public String update()
    {
+	   System.out.println("Agarrando el contexto.");
+       String nombre = request.getUserPrincipal().getName();
       this.conversation.end();
 
       try
       {
          if (this.id == null)
          {
+        	this.aseguradora.setFechaReg(new Date());
+            this.aseguradora.setUsuarioReg(nombre);
+         	this.aseguradora.setFlagEstado("AC");
             this.entityManager.persist(this.aseguradora);
             return "search?faces-redirect=true";
          }
          else
          {
+        	this.aseguradora.setFechaMod(new Date());
+        	this.aseguradora.setUsuarioMod(nombre);
+        	this.aseguradora.setFlagEstado("AC");
             this.entityManager.merge(this.aseguradora);
             return "view?faces-redirect=true&id=" + this.aseguradora.getIdAseguradora();
          }
@@ -152,6 +169,7 @@ public class AseguradoraBean implements Serializable
 
       try
       {
+    	  /*
          Aseguradora deletableEntity = findById(getId());
          Iterator<Usuario> iterUsuarios = deletableEntity.getUsuarios().iterator();
          for (; iterUsuarios.hasNext();)
@@ -161,7 +179,12 @@ public class AseguradoraBean implements Serializable
             iterUsuarios.remove();
             this.entityManager.merge(nextInUsuarios);
          }
-         this.entityManager.remove(deletableEntity);
+         this.entityManager.remove(deletableEntity);*/
+    	  String nombre = request.getUserPrincipal().getName();
+    	  Aseguradora deletableEntity = findById(getId());    	 
+    	  deletableEntity.setUsuarioBorrado(nombre);
+    	  deletableEntity.setFlagEstado("IN");
+    	  deletableEntity.setFechaBorrado(new Date());
          this.entityManager.flush();
          return "search?faces-redirect=true";
       }

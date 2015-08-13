@@ -37,12 +37,7 @@
 			<h:messages globalOnly="true" styleClass="error"/>
 
 			<h:panelGrid columnClasses="label,component,required" columns="3">
-				<h:outputLabel for="aseguradoraBeanAseguradoraIdAseguradora" value="Id Aseguradora:"/>
-				<h:panelGroup>
-					<h:inputText id="aseguradoraBeanAseguradoraIdAseguradora" required="true" value="#{aseguradoraBean.aseguradora.idAseguradora}"/>
-					<h:message for="aseguradoraBeanAseguradoraIdAseguradora" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText value="*"/>
+				
 				<h:outputLabel for="aseguradoraBeanAseguradoraNombreCorto" value="Nombre Corto:"/>
 				<h:panelGroup>
 					<h:inputText id="aseguradoraBeanAseguradoraNombreCorto" maxLength="50" required="true" value="#{aseguradoraBean.aseguradora.nombreCorto}"/>
@@ -107,6 +102,18 @@
 					<h:message for="aseguradoraBeanAseguradoraDireccionLegal" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText/>
+				
+				
+				<!--
+				
+				<h:outputLabel for="aseguradoraBeanAseguradoraIdAseguradora" value="Id Aseguradora:"/>
+				<h:panelGroup>
+					<h:inputText id="aseguradoraBeanAseguradoraIdAseguradora" required="true" value="#{aseguradoraBean.aseguradora.idAseguradora}"/>
+					<h:message for="aseguradoraBeanAseguradoraIdAseguradora" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				
+				
 				<h:outputLabel for="aseguradoraBeanAseguradoraFlagEstado" value="Flag Estado:"/>
 				<h:panelGroup>
 					<h:inputText id="aseguradoraBeanAseguradoraFlagEstado" maxLength="2" value="#{aseguradoraBean.aseguradora.flagEstado}"/>
@@ -209,6 +216,8 @@
 					</h:dataTable>
 				</h:panelGroup>
 				<h:outputText/>
+				
+				-->
 			</h:panelGrid>
 
 			<div class="buttons">

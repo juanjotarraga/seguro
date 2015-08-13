@@ -18,7 +18,7 @@
 	</ui:define>
 
 	<ui:define name="subheader">
-		Search Marca entities
+
 	</ui:define>
 
 	<ui:define name="footer"/>
@@ -40,25 +40,7 @@
 							<h:inputText id="marcaBeanExampleNombre" maxLength="50" value="#{marcaBean.example.nombre}"/>
 							<h:message for="marcaBeanExampleNombre" styleClass="error"/>
 						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="marcaBeanExampleFlagEstado" value="Flag Estado:"/>
-						<h:panelGroup>
-							<h:inputText id="marcaBeanExampleFlagEstado" maxLength="2" value="#{marcaBean.example.flagEstado}"/>
-							<h:message for="marcaBeanExampleFlagEstado" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="marcaBeanExampleUsuarioReg" value="Usuario Reg:"/>
-						<h:panelGroup>
-							<h:inputText id="marcaBeanExampleUsuarioReg" maxLength="30" value="#{marcaBean.example.usuarioReg}"/>
-							<h:message for="marcaBeanExampleUsuarioReg" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="marcaBeanExampleUsuarioMod" value="Usuario Mod:"/>
-						<h:panelGroup>
-							<h:inputText id="marcaBeanExampleUsuarioMod" maxLength="30" value="#{marcaBean.example.usuarioMod}"/>
-							<h:message for="marcaBeanExampleUsuarioMod" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+						<h:outputText/>						
 					</h:panelGrid>
 					<h:panelGroup styleClass="buttons">
 						<h:commandLink value="Buscar" action='#{marcaBean.search}' styleClass="btn btn-primary"/>
@@ -75,6 +57,15 @@
 					<h:link outcome="/parametros/marca/view">
 						<f:param name="id" value="#{_item.idMarca}"/>
 						<h:outputText id="itemIdMarca" value="#{_item.idMarca}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nombre"/>
+					</f:facet>
+					<h:link outcome="/parametros/marca/view">
+						<f:param name="id" value="#{_item.idMarca}"/>
+						<h:outputText id="itemNombre" value="#{_item.nombre}"/>
 					</h:link>
 				</h:column>
 			</h:dataTable>

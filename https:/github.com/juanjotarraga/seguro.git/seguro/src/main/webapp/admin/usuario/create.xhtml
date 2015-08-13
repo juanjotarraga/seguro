@@ -36,18 +36,13 @@
 		<h:form id="create">
 			<h:messages globalOnly="true" styleClass="error"/>
 
-			<h:panelGrid columnClasses="label,component,required" columns="3">
-				<h:outputLabel for="usuarioBeanUsuarioIdUsuario" value="Id Usuario:"/>
-				<h:panelGroup>
-					<h:inputText id="usuarioBeanUsuarioIdUsuario" required="true" value="#{usuarioBean.usuario.idUsuario}"/>
-					<h:message for="usuarioBeanUsuarioIdUsuario" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText value="*"/>
+			<h:panelGrid columnClasses="label,component,required" columns="3">			
+				
 				<h:outputLabel for="usuarioBeanUsuarioAseguradora" value="Aseguradora:"/>
 				<h:panelGroup>
 					<h:selectOneMenu converter="#{aseguradoraBean.converter}" id="usuarioBeanUsuarioAseguradora" value="#{usuarioBean.usuario.aseguradora}">
 						<f:selectItem/>
-						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{aseguradoraBean.all}" var="_item"/>
+						<f:selectItems itemLabel="#{forgeview:display(_item.nombreLargo)}" itemValue="#{_item}" value="#{aseguradoraBean.all}" var="_item"/>
 					</h:selectOneMenu>
 					<h:message for="usuarioBeanUsuarioAseguradora" styleClass="error"/>
 				</h:panelGroup>
@@ -70,6 +65,16 @@
 					<h:message for="usuarioBeanUsuarioUsuarioPassword" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
+				<!--
+				
+				<h:outputLabel for="usuarioBeanUsuarioIdUsuario" value="Id Usuario:"/>
+				<h:panelGroup>
+					<h:inputText id="usuarioBeanUsuarioIdUsuario" required="true" value="#{usuarioBean.usuario.idUsuario}"/>
+					<h:message for="usuarioBeanUsuarioIdUsuario" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				
+				
 				<h:outputLabel for="usuarioBeanUsuarioFlagEstado" value="Flag Estado:"/>
 				<h:panelGroup>
 					<h:inputText id="usuarioBeanUsuarioFlagEstado" maxLength="2" value="#{usuarioBean.usuario.flagEstado}"/>
@@ -117,7 +122,10 @@
 						</h:column>
 					</h:dataTable>
 				</h:panelGroup>
+				
 				<h:outputText/>
+				
+			-->
 			</h:panelGrid>
 
 			<div class="buttons">

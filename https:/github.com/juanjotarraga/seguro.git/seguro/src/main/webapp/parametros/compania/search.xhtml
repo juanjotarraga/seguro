@@ -18,7 +18,6 @@
 	</ui:define>
 
 	<ui:define name="subheader">
-		Search Compania entities
 	</ui:define>
 
 	<ui:define name="footer"/>
@@ -47,18 +46,7 @@
 							<h:message for="companiaBeanExampleAcronimo" styleClass="error"/>
 						</h:panelGroup>
 						<h:outputText/>
-						<h:outputLabel for="companiaBeanExampleLogo" value="Logo:"/>
-						<h:panelGroup>
-							<h:inputText id="companiaBeanExampleLogo" maxLength="50" value="#{companiaBean.example.logo}"/>
-							<h:message for="companiaBeanExampleLogo" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="companiaBeanExampleMail" value="Mail:"/>
-						<h:panelGroup>
-							<h:inputText id="companiaBeanExampleMail" maxLength="50" value="#{companiaBean.example.mail}"/>
-							<h:message for="companiaBeanExampleMail" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+						
 					</h:panelGrid>
 					<h:panelGroup styleClass="buttons">
 						<h:commandLink value="Buscar" action='#{companiaBean.search}' styleClass="btn btn-primary"/>
@@ -75,6 +63,15 @@
 					<h:link outcome="/parametros/compania/view">
 						<f:param name="id" value="#{_item.idCompania}"/>
 						<h:outputText id="itemIdCompania" value="#{_item.idCompania}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nombre"/>
+					</f:facet>
+					<h:link outcome="/parametros/compania/view">
+						<f:param name="id" value="#{_item.idCompania}"/>
+						<h:outputText id="itemNombre" value="#{_item.nombre}"/>
 					</h:link>
 				</h:column>
 			</h:dataTable>

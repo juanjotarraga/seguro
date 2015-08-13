@@ -51,12 +51,13 @@
         </p:submenu>
         <p:separator/>
          <p:submenu label="Reportes" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN') or request.isUserInRole('USUARIO2')}">
-         
+         	<p:menuitem value="Condiciones" outcome="/consultas/condiciones/search"/>
+         	<p:menuitem value="Compania" outcome="/consultas/compania/search"/>
                      
         </p:submenu>
         <p:separator/>
-         <p:submenu label="Informes" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN') or request.isUserInRole('USUARIO2')}">
-      
+         <p:submenu label="Informes/Graficos" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN') or request.isUserInRole('USUARIO2')}">
+      		<p:menuitem value="G Vehiculos" outcome="/grafico/vehiculo/basic"/>
                      
         </p:submenu>
         <p:separator />

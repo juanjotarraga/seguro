@@ -19,7 +19,7 @@
 	</ui:define>
 
 	<ui:define name="subheader">
-		View existing Tipo
+
 	</ui:define>
 
 	<ui:define name="footer"/>
@@ -59,32 +59,8 @@
 			<h:outputLabel for="tipoBeanTipoUsuarioBorrado" value="Usuario Borrado:"/>
 			<h:outputText id="tipoBeanTipoUsuarioBorrado" value="#{tipoBean.tipo.usuarioBorrado}"/>
 			<h:outputText/>
-			<h:outputLabel for="tipoBeanTipoTasas" value="Tasas:"/>
-			<h:dataTable id="tipoBeanTipoTasas" styleClass="data-table" value="#{forgeview:asList(tipoBean.tipo.tasas)}" var="_item">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Id Tasa"/>
-					</f:facet>
-					<h:link outcome="/parametros/tasa/view">
-						<f:param name="id" value="#{_item.idTasa}"/>
-						<h:outputText id="itemIdTasa" value="#{_item.idTasa}"/>
-					</h:link>
-				</h:column>
-			</h:dataTable>
-			<h:outputText/>
-			<h:outputLabel for="tipoBeanTipoAutomotors" value="Automotors:"/>
-			<h:dataTable id="tipoBeanTipoAutomotors" styleClass="data-table" value="#{forgeview:asList(tipoBean.tipo.automotors)}" var="_item">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Id Automotor"/>
-					</f:facet>
-					<h:link outcome="/procesos/automotor/view">
-						<f:param name="id" value="#{_item.idAutomotor}"/>
-						<h:outputText id="itemIdAutomotor" value="#{_item.idAutomotor}"/>
-					</h:link>
-				</h:column>
-			</h:dataTable>
-			<h:outputText/>
+			
+
 		</h:panelGrid>
 
 		<div class="buttons">

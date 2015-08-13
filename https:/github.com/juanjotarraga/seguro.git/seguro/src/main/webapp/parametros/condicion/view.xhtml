@@ -19,7 +19,7 @@
 	</ui:define>
 
 	<ui:define name="subheader">
-		View existing Condicion
+
 	</ui:define>
 
 	<ui:define name="footer"/>
@@ -62,32 +62,7 @@
 			<h:outputLabel for="condicionBeanCondicionUsuarioBorrado" value="Usuario Borrado:"/>
 			<h:outputText id="condicionBeanCondicionUsuarioBorrado" value="#{condicionBean.condicion.usuarioBorrado}"/>
 			<h:outputText/>
-			<h:outputLabel for="condicionBeanCondicionDetalleTasaCondicions" value="Detalle Tasa Condicions:"/>
-			<h:dataTable id="condicionBeanCondicionDetalleTasaCondicions" styleClass="data-table" value="#{forgeview:asList(condicionBean.condicion.detalleTasaCondicions)}" var="_item">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Id Detalle Tasa Condicion"/>
-					</f:facet>
-					<h:link outcome="/parametros/detalleTasaCondicion/view">
-						<f:param name="id" value="#{_item.idDetalleTasaCondicion}"/>
-						<h:outputText id="itemIdDetalleTasaCondicion" value="#{_item.idDetalleTasaCondicion}"/>
-					</h:link>
-				</h:column>
-			</h:dataTable>
-			<h:outputText/>
-			<h:outputLabel for="condicionBeanCondicionCoberturaSiniestros" value="Cobertura Siniestros:"/>
-			<h:dataTable id="condicionBeanCondicionCoberturaSiniestros" styleClass="data-table" value="#{forgeview:asList(condicionBean.condicion.coberturaSiniestros)}" var="_item">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Id Cobertura Siniestro"/>
-					</f:facet>
-					<h:link outcome="/procesos/coberturaSiniestro/view">
-						<f:param name="id" value="#{_item.idCoberturaSiniestro}"/>
-						<h:outputText id="itemIdCoberturaSiniestro" value="#{_item.idCoberturaSiniestro}"/>
-					</h:link>
-				</h:column>
-			</h:dataTable>
-			<h:outputText/>
+
 		</h:panelGrid>
 
 		<div class="buttons">

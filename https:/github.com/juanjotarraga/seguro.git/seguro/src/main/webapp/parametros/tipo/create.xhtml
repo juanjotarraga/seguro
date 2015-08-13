@@ -37,122 +37,14 @@
 			<h:messages globalOnly="true" styleClass="error"/>
 
 			<h:panelGrid columnClasses="label,component,required" columns="3">
-				<h:outputLabel for="tipoBeanTipoIdTipo" value="Id Tipo:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoBeanTipoIdTipo" required="true" value="#{tipoBean.tipo.idTipo}"/>
-					<h:message for="tipoBeanTipoIdTipo" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText value="*"/>
+
 				<h:outputLabel for="tipoBeanTipoNombre" value="Nombre:"/>
 				<h:panelGroup>
 					<h:inputText id="tipoBeanTipoNombre" maxLength="50" value="#{tipoBean.tipo.nombre}"/>
 					<h:message for="tipoBeanTipoNombre" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText/>
-				<h:outputLabel for="tipoBeanTipoFlagEstado" value="Flag Estado:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoBeanTipoFlagEstado" maxLength="2" value="#{tipoBean.tipo.flagEstado}"/>
-					<h:message for="tipoBeanTipoFlagEstado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoBeanTipoFechaReg" value="Fecha Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoBeanTipoFechaReg" maxLength="29" value="#{tipoBean.tipo.fechaReg}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="tipoBeanTipoFechaReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoBeanTipoUsuarioReg" value="Usuario Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoBeanTipoUsuarioReg" maxLength="30" value="#{tipoBean.tipo.usuarioReg}"/>
-					<h:message for="tipoBeanTipoUsuarioReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoBeanTipoFechaMod" value="Fecha Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoBeanTipoFechaMod" maxLength="29" value="#{tipoBean.tipo.fechaMod}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="tipoBeanTipoFechaMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoBeanTipoUsuarioMod" value="Usuario Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoBeanTipoUsuarioMod" maxLength="30" value="#{tipoBean.tipo.usuarioMod}"/>
-					<h:message for="tipoBeanTipoUsuarioMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoBeanTipoFechaBorrado" value="Fecha Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoBeanTipoFechaBorrado" maxLength="29" value="#{tipoBean.tipo.fechaBorrado}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="tipoBeanTipoFechaBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoBeanTipoUsuarioBorrado" value="Usuario Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoBeanTipoUsuarioBorrado" maxLength="30" value="#{tipoBean.tipo.usuarioBorrado}"/>
-					<h:message for="tipoBeanTipoUsuarioBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoBeanTipoTasas" value="Tasas:"/>
-				<h:panelGroup>
-					<ui:param name="_collection" value="#{tipoBean.tipo.tasas}"/>
-					<h:dataTable id="tipoBeanTipoTasas" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Id Tasa"/>
-							</f:facet>
-							<h:link outcome="/parametros/tasa/view">
-								<f:param name="id" value="#{_item.idTasa}"/>
-								<h:outputText id="itemIdTasa" value="#{_item.idTasa}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="tasaBeanAddIdTasa" value="#{tasaBean.add.idTasa}"/>
-								<h:message for="tasaBeanAddIdTasa" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column footerClass="remove-column" headerClass="remove-column">
-							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
-							<f:facet name="footer">
-								<h:commandLink action="#{_collection.add(tasaBean.added)}" id="tipoBeanTipoTasasAdd" styleClass="add-button">
-									<f:setPropertyActionListener target="#{tasaBean.add.tipo}" value="#{tipoBean.tipo}"/>
-								</h:commandLink>
-							</f:facet>
-						</h:column>
-					</h:dataTable>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoBeanTipoAutomotors" value="Automotors:"/>
-				<h:panelGroup>
-					<ui:param name="_collection" value="#{tipoBean.tipo.automotors}"/>
-					<h:dataTable id="tipoBeanTipoAutomotors" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Id Automotor"/>
-							</f:facet>
-							<h:link outcome="/procesos/automotor/view">
-								<f:param name="id" value="#{_item.idAutomotor}"/>
-								<h:outputText id="itemIdAutomotor" value="#{_item.idAutomotor}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="automotorBeanAddIdAutomotor" value="#{automotorBean.add.idAutomotor}"/>
-								<h:message for="automotorBeanAddIdAutomotor" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column footerClass="remove-column" headerClass="remove-column">
-							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
-							<f:facet name="footer">
-								<h:commandLink action="#{_collection.add(automotorBean.added)}" id="tipoBeanTipoAutomotorsAdd" styleClass="add-button">
-									<f:setPropertyActionListener target="#{automotorBean.add.tipo}" value="#{tipoBean.tipo}"/>
-								</h:commandLink>
-							</f:facet>
-						</h:column>
-					</h:dataTable>
-				</h:panelGroup>
-				<h:outputText/>
+
 			</h:panelGrid>
 
 			<div class="buttons">

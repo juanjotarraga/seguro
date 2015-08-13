@@ -19,7 +19,7 @@
 	</ui:define>
 
 	<ui:define name="subheader">
-		Search Tasa entities
+	
 	</ui:define>
 
 	<ui:define name="footer"/>
@@ -40,7 +40,7 @@
 						<h:panelGroup>
 							<h:selectOneMenu converter="#{companiaBean.converter}" id="tasaBeanExampleCompania" value="#{tasaBean.example.compania}">
 								<f:selectItem/>
-								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{companiaBean.all}" var="_item"/>
+								<f:selectItems itemLabel="#{forgeview:display(_item.nombre)}" itemValue="#{_item}" value="#{companiaBean.all}" var="_item"/>
 							</h:selectOneMenu>
 							<h:message for="tasaBeanExampleCompania" styleClass="error"/>
 						</h:panelGroup>
@@ -49,7 +49,7 @@
 						<h:panelGroup>
 							<h:selectOneMenu converter="#{tipoBean.converter}" id="tasaBeanExampleTipo" value="#{tasaBean.example.tipo}">
 								<f:selectItem/>
-								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{tipoBean.all}" var="_item"/>
+								<f:selectItems itemLabel="#{forgeview:display(_item.nombre)}" itemValue="#{_item}" value="#{tipoBean.all}" var="_item"/>
 							</h:selectOneMenu>
 							<h:message for="tasaBeanExampleTipo" styleClass="error"/>
 						</h:panelGroup>
@@ -82,6 +82,42 @@
 					<h:link outcome="/parametros/tasa/view">
 						<f:param name="id" value="#{_item.idTasa}"/>
 						<h:outputText id="itemIdTasa" value="#{_item.idTasa}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Aseguradora"/>
+					</f:facet>
+					<h:link outcome="/parametros/tasa/view">
+						<f:param name="id" value="#{_item.idTasa}"/>
+						<h:outputText id="itemAseguradora" value="#{_item.compania.nombre}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Mayor que"/>
+					</f:facet>
+					<h:link outcome="/parametros/tasa/view">
+						<f:param name="id" value="#{_item.idTasa}"/>
+						<h:outputText id="itemIdmayorQue" value="#{_item.mayorQue}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Menor que"/>
+					</f:facet>
+					<h:link outcome="/parametros/tasa/view">
+						<f:param name="id" value="#{_item.idTasa}"/>
+						<h:outputText id="itemImenorQue" value="#{_item.menorQue}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Opciones"/>
+					</f:facet>
+					<h:link outcome="/parametros/tasa/tasaCondiciones" styleClass="btn btn-primary">
+						<f:param name="id" value="#{_item.idTasa}"/>
+						<h:outputText id="itemUsuarRol" value="Asignar Condiciones"/>
 					</h:link>
 				</h:column>
 			</h:dataTable>
